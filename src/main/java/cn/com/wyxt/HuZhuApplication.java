@@ -1,4 +1,4 @@
-package cn.lger;
+package cn.com.wyxt;
 
 import cn.com.wyxt.base.exception.DiyException;
 import org.springframework.boot.SpringApplication;
@@ -20,15 +20,15 @@ import java.io.IOException;
 @EnableCaching //redis 普通缓存
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds= 7200)// redis 共享session
 @SpringBootApplication
-public class MembershipApplication  extends SpringBootServletInitializer {
+public class HuZhuApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(MembershipApplication.class);
+        return application.sources(HuZhuApplication.class);
     }
 
     public static void main(String[] args) throws IOException, DiyException {
-        SpringApplication.run(MembershipApplication.class, args);
+        SpringApplication.run(HuZhuApplication.class, args);
     }
     @RequestMapping("/")
     public String index() {

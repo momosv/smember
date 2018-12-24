@@ -1,0 +1,56 @@
+server:
+  port: 8081
+  servlet:
+    session:
+      timeout: 120m
+    context-path: /mp/
+         # HTTP ENCODING
+
+debug: true
+spring:
+  profiles:
+    active: base,freemark,mybatis
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    mode: LEGACYHTML5
+
+  jpa:
+    show-sql: true
+    hibernate: ddl-auto: update
+  http:
+    encoding:
+      charset: UTF-8
+    encoding:
+      force: true
+    encoding:
+      enabled: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 1000MB
+
+
+#  session:
+#      store-type: none
+
+
+
+
+
+logging:
+  config: classpath:logback.xml
+  path: logs
+  level:
+    org:
+      springframework:
+         security: INFO
+
+#spring.mvc.static-path-pattern=/static/**
+#logging.level.org.springframework.security = debug
+#logging.level.org.springframework.security.web = warn
+#logging.level.org.springframework.web = warn
+

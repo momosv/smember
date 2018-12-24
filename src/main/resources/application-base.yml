@@ -1,0 +1,74 @@
+spring:
+  #redis配置
+    redis:
+  #  数据库索引
+      database: 2
+  #    服务器地址
+      host: 106.14.146.223
+  #    服务器连接端口
+      port: 6379
+  #    链接密码
+      password: pass
+  #    链接池 spring boot 2
+      jedis:
+          pool:
+            #最大连接数
+            max-active: 8
+            #最大阻塞等待时间(负数表示没限制)
+            max-wait: -1ms
+            #最大空闲
+            max-idle: 8
+            #最小空闲
+            min-idle: 0
+        #连接超时时间
+      timeout: 10s
+    datasource:
+      #123.207.23.166:3306
+      master:
+        url: jdbc:mysql://106.14.146.223:3306/db_membership?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
+        username: root
+        password: 123456
+        useGlobalDataSourceStat: true # 合并多个DruidDataSource的监控数据
+        driver-class-name: com.mysql.jdbc.Driver
+        db-type: com.alibaba.druid.pool.DruidDataSource
+        minIdle: 5
+        maxActive: 100
+        initialSize: 10
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 50
+        removeAbandoned: true
+        filters: stat
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000 # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      slaver:
+        url: jdbc:mysql://106.14.146.223:3306/db_membership?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
+        username: root
+        password: 123456
+        useGlobalDataSourceStat: true # 合并多个DruidDataSource的监控数据
+        driver-class-name: com.mysql.jdbc.Driver
+        db-type: com.alibaba.druid.pool.DruidDataSource
+        minIdle: 5
+        maxActive: 100
+        initialSize: 10
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 50
+        removeAbandoned: true
+        filters: stat
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000 # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      druidLoginName: momo # 登录druid的账号
+      druidPassword: momo # 登录druid的密码
+    jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
