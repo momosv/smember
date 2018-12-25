@@ -10,38 +10,38 @@
     <script src="js/jquery.min.js"></script>
     <script src="login/tether.min.js"></script>
     <script src="login/bootstrap.min.js"></script>
-
+        <style>
+            .modal {
+                background-color: #76767600;
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.0);
+                height: 100%;
+            }
+        </style>
 
 
 </head>
 <body>
 
 <div class="container pt-5">
-    <div class="col-sm-12 col-md-5 col-lg-5 m-auto pt-5 mt-5">
+    <h1 class="card-title center-block text-center">救助信息管理平台</h1>
+    <div class="col-sm-12 col-md-7 col-lg-7 m-auto pt-2 mt-2">
         <!--登陆框-->
+
         <div class="card" style="border-radius: 10px">
+
             <div class="card-block">
                 <!--标题-->
-                <h2 class="card-title">
-                    <ul class="tab_menu list-inline">
-                        <li class="selected"><i class="fa fa-user" aria-hidden="true"></i>企业登录 </li>
-                        <li class="">管理员登录</li>
-                    </ul>
+                <h4 class="card-title">
                     <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Active</a>
+                        <li class="nav-item col-6">
+                            <a class=" nav-link active bg-info" value="0" >企业端</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
+                        <li class="nav-item  col-6"">
+                            <a class="nav-link" value="1" >管理员</a>
                         </li>
                     </ul>
-                </h2>
+                    <input type="hidden" value="0" id="userType">
+                </h4>
 
                 <span class="text-muted text-danger" "></span>
                 <hr>
@@ -59,7 +59,7 @@
                     <br/>
                     <!--登录按钮-->
                     <div align="center" style="padding-bottom: 10%">
-                        <button class="btn btn-outline-success" type="submit" style="width: 12rem" onclick="login()">登录</button>
+                        <button class="btn bg-info btn-outline-success" type="submit" style="width: 12rem" onclick="login()">登录</button>
                     </div>
                 </form>
 
@@ -67,58 +67,64 @@
         </div>
     </div>
 </div>
-<!--<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">-->
-    <!--<div class="modal-dialog" role="document">-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-                <!--<h5 class="modal-title" id="exampleModalLiveLabel">信息</h5>-->
-                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                    <!--<span aria-hidden="true">×</span>-->
-                <!--</button>-->
-            <!--</div>-->
-            <!--<div id="modalInfo" class="modal-body font-weight-bold">-->
+<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style="display: none" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLiveLabel">信息</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div id="modalInfo" class="modal-body font-weight-bold">
 
-            <!--</div>-->
-            <!--<div class="modal-footer">-->
-                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭窗口</button>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-<!--<script>-->
-    <!--var modal = $('#exampleModal');-->
-    <!--var info = $('#modalInfo');-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭窗口</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var modal = $('#exampleModal');
+    var info = $('#modalInfo');
+    $("ul li a").on("click", function(){
+        $('ul li a:not(this)').removeClass('active bg-info')
+        $(this).addClass('active bg-info');
+        console.log($(this).attr("value"));
+        $("#userType").val($(this).attr("value"));
+    });
 
-    <!--function login() {-->
-        <!--var username = $('#username').val();-->
-        <!--var password = $('#password').val();-->
-        <!--$.ajax({-->
-            <!--type: 'POST',-->
-            <!--data: {username: username, password: password},-->
-            <!--dataType: "JSON",-->
-            <!--url: '/login',-->
-            <!--success: function (data) {-->
-                <!--if (data === 'success') {-->
-                    <!--info.html('登录成功！<span id="time">3</span>秒后跳转<a href="/">现在跳转</a>');-->
-                    <!--setInterval(function () {-->
-                        <!--var time = $('#time');-->
-                        <!--var currentTime = time.text();-->
-                        <!--currentTime = parseInt(currentTime);-->
-                        <!--currentTime&#45;&#45;;-->
-                        <!--if (currentTime <= 0) {-->
-                            <!--window.location.href ='/';-->
-                        <!--} else {-->
-                            <!--time.text(currentTime);-->
-                        <!--}-->
-                    <!--}, 1000);-->
-                    <!--modal.modal('show');-->
-                <!--} else {-->
-                    <!--info.html('登录失败！请检查密码或用户名是否出错');-->
-                    <!--modal.modal('show');-->
-                <!--}-->
-            <!--}-->
-        <!--});-->
-    <!--}-->
-<!--</script>-->
+    function login() {
+        var username = $('#username').val();
+        var password = $('#password').val();
+        $.ajax({
+            type: 'POST',
+            data: {username: username, password: password},
+            dataType: "JSON",
+            url: '/login',
+            success: function (data) {
+                if (data === 'success') {
+                    info.html('登录成功！<span id="time">3</span>秒后跳转<a href="/">现在跳转</a>');
+                    setInterval(function () {
+                        var time = $('#time');
+                        var currentTime = time.text();
+                        currentTime = parseInt(currentTime);
+                        currentTime--;
+                        if (currentTime <= 0) {
+                            window.location.href ='/';
+                        } else {
+                            time.text(currentTime);
+                        }
+                    }, 1000);
+                    modal.modal('show');
+                } else {
+                    info.html('登录失败！请检查密码或用户名是否出错');
+                    modal.modal('show');
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>

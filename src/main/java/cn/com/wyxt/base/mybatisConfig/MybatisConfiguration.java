@@ -38,7 +38,7 @@ import java.util.List;
  *
  */
 
-@MapperScan(value={"com.cn.xt.mp.feedback.dao.dao","com.cn.xt.mp.base.mybatis.dao"})
+@MapperScan(value={"ccn.com.wyxt.huzhu.dao.dao","cn.com.wyxt.base.mybatis.dao"})
 @Configuration
 @EnableTransactionManagement
 @AutoConfigureAfter(DatasourceConfig.class)

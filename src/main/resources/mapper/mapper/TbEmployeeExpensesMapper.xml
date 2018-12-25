@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.wyxt.huzhu.dao.dao.TbEmployeeExpensesMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.wyxt.huzhu.model.TbEmployeeExpenses" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="cost" property="cost" jdbcType="DECIMAL" />
+    <result column="employee_id" property="employeeId" jdbcType="VARCHAR" />
+    <result column="pre_work_category" property="preWorkCategory" jdbcType="TINYINT" />
+    <result column="factor" property="factor" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, cost, employee_id, pre_work_category, factor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_employee_expenses
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+</mapper>

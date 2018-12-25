@@ -18,9 +18,9 @@ public class SwaggerConfiguration {
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                .groupName("mp用户信息授权接口")
+                .groupName("用户信息授权接口")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.cn.xt.mp.feedback.wxSecurity.wxSecurity"))
+                .apis(RequestHandlerSelectors.basePackage("cn.com.wyxt.huzhu.ctrl"))
                 .paths(PathSelectors.any())
                 .build();
     }

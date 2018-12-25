@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.wyxt.huzhu.dao.dao.TbEemployeeUpdateRecordMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.wyxt.huzhu.model.TbEmployeeUpdateRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="employee_id" property="employeeId" jdbcType="VARCHAR" />
+    <result column="old_category" property="oldCategory" jdbcType="TINYINT" />
+    <result column="new_category" property="newCategory" jdbcType="TINYINT" />
+    <result column="creator_id" property="creatorId" jdbcType="VARCHAR" />
+    <result column="creator_name" property="creatorName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, employee_id, old_category, new_category, creator_id, creator_name, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_employee_update_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

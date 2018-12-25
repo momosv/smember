@@ -4,6 +4,9 @@ package cn.com.wyxt.base.tokenManager.impl;
 import cn.com.wyxt.base.entity.UserInfoPO;
 import cn.com.wyxt.base.redis.util.RedisUtils;
 import cn.com.wyxt.base.tokenManager.TokenManager;
+import cn.com.wyxt.base.util.Constants;
+import cn.com.wyxt.base.util.SpringUtil;
+import cn.com.wyxt.huzhu.modelVO.TbAdminVO;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -53,4 +56,6 @@ public class TokenManagerImpl implements TokenManager {
         }
         return null;
     }
+
+
 }

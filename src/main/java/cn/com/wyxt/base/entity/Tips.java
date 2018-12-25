@@ -11,7 +11,10 @@ public enum Tips {
 
 
     COMPANY_USER_NULL(1001,"在线状态已经过期"),
-    FEEBACK_MAIN_NULL(2001,"反馈单标题或者内容不能为空");
+    FEEBACK_MAIN_NULL(2001,"反馈单标题或者内容不能为空"),
+    ACCOUNT_PSW_NULL(101,"账号或密码不能为空"),
+
+    ;
     /**
      * The Code.
      */

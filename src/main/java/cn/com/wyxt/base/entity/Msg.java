@@ -45,6 +45,18 @@ public class Msg {
 		result.setMsg(msg);
 		return result;
 	}
+	public static Msg fail(Tips tips){
+		Msg result = new Msg();
+		result.setCode(tips.getCode());
+		result.setMsg(tips.getDesc());
+		return result;
+	}
+	public static Msg success(Tips tips){
+		Msg result = new Msg();
+		result.setCode(tips.getCode());
+		result.setMsg(tips.getDesc());
+		return result;
+	}
 	
 	public static Msg success(String msg){
 		Msg result = new Msg();

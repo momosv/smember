@@ -49,6 +49,8 @@ public class Constants {
 
 
     public static final String COMPANY_USER_TOKEN = "companyUserToken";
+    public static final String LOGIN_ADMIN = "loginAdmin";
+    public static final String LOGIN_COMPANY = "loginCompany";
     public static final String COMPANY_USER = "companyUser";
     public static final String SYS_TOKEN = "sys";
     public static final String UNIT_USER_TOKEN = "unitUserToken";
