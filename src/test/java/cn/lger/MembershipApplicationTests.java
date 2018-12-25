@@ -6,6 +6,9 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MembershipApplicationTests {
@@ -19,9 +22,11 @@ public class MembershipApplicationTests {
 
 	public static void main(String[] args) throws Exception {
 		//https://blog.csdn.net/u010651369/article/details/80059442
-		String checkClientOption = "awd,";
-		checkClientOption = checkClientOption.substring(0,checkClientOption.length()-1);
-		System.out.println(checkClientOption);
+        ArrayList list = new ArrayList();
+        list.add("1");
+        list.add("2");
+        List child = list.subList((1-1)*50,list.size());
+
 		// 初始化一个TAipOcr
 		TAipOcr aipOcr = new TAipOcr(APP_ID,APP_KEY);
 		// 调用接口
@@ -39,6 +44,8 @@ public class MembershipApplicationTests {
 //		String result = aipOcr.plateOcrByUrl("https://yyb.gtimg.com/ai/assets/ai-demo/large/plate-1-lg.jpg");//车牌识别 选取网络图片URL识别
 		String result = aipOcr.idcardOcr("E:\\Pictures\\odemo-pic-1.jpg", 0);//身份证正面(图片)识别
 		System.out.println(result);
+
+
 	}
 
 
