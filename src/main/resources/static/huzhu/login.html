@@ -98,11 +98,12 @@
     function login() {
         var username = $('#username').val();
         var password = $('#password').val();
+        var type = $("#userType").val();
         $.ajax({
             type: 'POST',
-            data: {username: username, password: password},
+            data: {account: username, psw: password,type:type},
             dataType: "JSON",
-            url: '/login',
+            url: '/hz/login/valid',
             success: function (data) {
                 if (data === 'success') {
                     info.html('登录成功！<span id="time">3</span>秒后跳转<a href="/">现在跳转</a>');
@@ -112,7 +113,7 @@
                         currentTime = parseInt(currentTime);
                         currentTime--;
                         if (currentTime <= 0) {
-                            window.location.href ='/';
+                            window.location.href ='index.html';
                         } else {
                             time.text(currentTime);
                         }

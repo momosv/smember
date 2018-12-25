@@ -37,6 +37,6 @@
 
 
 	</settings>
-	<objectWrapperFactory type="com.cn.xt.mp.base.mybatis.wrapper.MyWrapperFactory"/>
+	<objectWrapperFactory type="cn.com.wyxt.base.mybatis.wrapper.MyWrapperFactory"/>
 </configuration>
 
