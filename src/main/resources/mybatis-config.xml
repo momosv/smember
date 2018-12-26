@@ -35,7 +35,6 @@
 		<setting name="callSettersOnNulls" value="true"/>
 		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
 
-
 	</settings>
 	<objectWrapperFactory type="cn.com.wyxt.base.mybatis.wrapper.MyWrapperFactory"/>
 </configuration>

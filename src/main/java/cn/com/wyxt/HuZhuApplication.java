@@ -15,7 +15,6 @@ import java.io.IOException;
 
 
 //@ServletComponentScan 去掉该注解后filter登录验证无效
-@Controller
 @EnableAsync
 @EnableCaching //redis 普通缓存
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds= 7200)// redis 共享session
@@ -29,14 +28,5 @@ public class HuZhuApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) throws IOException, DiyException {
         SpringApplication.run(HuZhuApplication.class, args);
-    }
-    @RequestMapping("/")
-    public String index() {
-        return "index";
-    }
-
-    @RequestMapping("/home")
-    public String home() {
-        return "index";
     }
 }

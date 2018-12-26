@@ -1,5 +1,6 @@
 package cn.lger.util;
 
+import cn.com.wyxt.base.util.MemberNumberRandomUtil;
 import org.junit.Test;
 
 /**

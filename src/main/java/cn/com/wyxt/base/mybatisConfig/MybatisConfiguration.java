@@ -102,9 +102,11 @@ public class MybatisConfiguration implements TransactionManagementConfigurer {
                 
                 return sessionFactoryBean.getObject();
             } catch (IOException e) {
+                e.printStackTrace();
                 logger.error("mybatis resolver ws-mapper*xml is error",e);
                 return null;
             } catch (Exception e) {
+                e.printStackTrace();
                 logger.error("mybatis sqlSessionFactoryBean create error",e);
                 return null;
             }

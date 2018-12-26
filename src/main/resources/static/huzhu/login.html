@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>login</title>
-    <link rel="stylesheet" href="login/bootstrap.min.css" />
+    <link rel="stylesheet" href="bootstrap4.1.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
-    <script src="js/jquery.min.js"></script>
+    <script src="jquery3.0.0/jquery.js"></script>
     <script src="login/tether.min.js"></script>
-    <script src="login/bootstrap.min.js"></script>
+    <script src="bootstrap4.1.0/js/bootstrap.js"></script>
+    <script src="bootstrap3.3.7/js/button.js"></script>
         <style>
             .modal {
                 background-color: #76767600;
@@ -36,30 +37,30 @@
                         <li class="nav-item col-6">
                             <a class=" nav-link active bg-info" value="0" >企业端</a>
                         </li>
-                        <li class="nav-item  col-6"">
+                        <li class="nav-item  col-6">
                             <a class="nav-link" value="1" >管理员</a>
                         </li>
                     </ul>
                     <input type="hidden" value="0" id="userType">
                 </h4>
 
-                <span class="text-muted text-danger" "></span>
+                <span class="text-muted text-danger" ></span>
                 <hr>
-                <form th:action="@{/login}" method="post">
+                <form onsubmit="return login()"  method="post">
                     <!--用户输入框-->
                     <div class="input-group ">
-                        <input type="text" class="form-control" placeholder="账号" id="username" name="username" th:value="${username}" required>
+                        <input type="text" class="form-control" placeholder="账号" id="username" name="username" value="" required>
                     </div>
                     <br/>
                     <!--密码输入框-->
                     <div class="input-group">
-                        <input type="password" class="form-control" placeholder="密码" th:value="${password}" name="password" id="password">
+                        <input type="password" class="form-control" placeholder="密码" value="" name="password" id="password">
                     </div>
                     <br/>
                     <br/>
                     <!--登录按钮-->
                     <div align="center" style="padding-bottom: 10%">
-                        <button class="btn bg-info btn-outline-success" type="submit" style="width: 12rem" onclick="login()">登录</button>
+                        <button class="btn bg-info btn-outline-success" id="login-btn" data-loading-text="登录中..." autocomplete="off" type="submit" style="width: 12rem"  >登录</button>
                     </div>
                 </form>
 
@@ -67,6 +68,7 @@
         </div>
     </div>
 </div>
+
 <div id="exampleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style="display: none" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -87,6 +89,8 @@
 </div>
 <script>
     var modal = $('#exampleModal');
+    var mymodal = $('#myModal');
+    mymodal.modal("show");
     var info = $('#modalInfo');
     $("ul li a").on("click", function(){
         $('ul li a:not(this)').removeClass('active bg-info')
@@ -96,36 +100,42 @@
     });
 
     function login() {
+          $("#login-btn").button('loading');
+
         var username = $('#username').val();
         var password = $('#password').val();
         var type = $("#userType").val();
         $.ajax({
             type: 'POST',
-            data: {account: username, psw: password,type:type},
+            data: {account: username, psw: password,userType:type},
             dataType: "JSON",
-            url: '/hz/login/valid',
+            url: 'http://127.0.0.1:8081/hz/login/valid',
             success: function (data) {
-                if (data === 'success') {
-                    info.html('登录成功！<span id="time">3</span>秒后跳转<a href="/">现在跳转</a>');
-                    setInterval(function () {
-                        var time = $('#time');
-                        var currentTime = time.text();
-                        currentTime = parseInt(currentTime);
-                        currentTime--;
-                        if (currentTime <= 0) {
-                            window.location.href ='index.html';
-                        } else {
-                            time.text(currentTime);
-                        }
-                    }, 1000);
-                    modal.modal('show');
+                $("#login-btn").button('reset');
+                // $("#login-btn").button('reset');
+                if (data.code == 0) {
+                    if(data.extend.type==1) {
+                        window.location.href = 'http://127.0.0.1:8081/hz/huzhu/html/admin/index.html';
+                    }else if(data.extend.type==110) {
+                        window.location.href = 'http://127.0.0.1:8081/hz/huzhu/html/sys/index.html';
+                    }else {//data.extend.type==0)
+                        window.location.href = 'http://127.0.0.1:8081/hz/huzhu/html/comp/index.html';
+                    }
                 } else {
                     info.html('登录失败！请检查密码或用户名是否出错');
                     modal.modal('show');
                 }
+            },
+            error:function () {
+                $("#login-btn").button('reset');
             }
+
         });
+        return false;
     }
+
+
 </script>
+
 </body>
 </html>

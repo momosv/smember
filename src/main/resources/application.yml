@@ -11,20 +11,16 @@ spring:
   profiles:
     active: base,freemark,mybatis
 
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
-    cache: false
-    mode: LEGACYHTML5
-
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
+#    cache: false
+#    mode: LEGACYHTML5
 
   http:
-    encoding:
-      charset: UTF-8
-    encoding:
-      force: true
-    encoding:
-      enabled: true
+    encoding.charset: UTF-8
+    encoding.enable: true
+    encoding.force: true
   servlet:
     multipart:
       enabled: true

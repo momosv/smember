@@ -39,7 +39,6 @@ public class LoginCtrl {
         if(StringUtils.isEmpty(account)||StringUtils.isEmpty(psw)){
             return Msg.fail(Tips.ACCOUNT_PSW_NULL);
         }
-        accountService.validLogin(account,psw,userType);
-        return Msg.success();
+        return accountService.validLogin(account,psw,userType);
     }
 }

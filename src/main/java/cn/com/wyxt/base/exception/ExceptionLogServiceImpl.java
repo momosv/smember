@@ -7,6 +7,7 @@ import cn.com.wyxt.huzhu.dao.dao.TbExceptionLogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 /**
  * @author linshengwen
  * @version 1.0
@@ -22,6 +23,7 @@ public class ExceptionLogServiceImpl extends BasicServiceImpl implements IExcept
     private void setMapper(){
         this.setMapper(tbExceptionLogMapper);
     }
+
     public void insertExceptionLogSelective(TbExceptionLog exceptionLog) {
             this.insertOne(exceptionLog);
     }

@@ -1,7 +1,7 @@
 mybatis:
   readonly-mapper-locations:
       - classpath*:/mapper/BasicMapper.xml # 数组，用 -  接收
-      - classpath*:/mapper/readonlyMapper/*.xml # 数组，用 -  接收
+   #   - classpath*:/mapper/readonlyMapper/*.xml # 数组，用 -  接收
    #   - classpath*:/mapper/mapper/*.xml # 数组，用 -  接收
   mapper-locations:
       - classpath*:/mapper/BasicMapper.xml
