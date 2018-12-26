@@ -18,7 +18,7 @@ public class SwaggerConfiguration {
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                .groupName("用户信息授权接口")
+                .groupName("登录验证")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("cn.com.wyxt.huzhu.ctrl"))
                 .paths(PathSelectors.any())

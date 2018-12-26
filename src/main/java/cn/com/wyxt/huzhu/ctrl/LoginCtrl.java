@@ -3,6 +3,8 @@ package cn.com.wyxt.huzhu.ctrl;
 import cn.com.wyxt.base.entity.Msg;
 import cn.com.wyxt.base.entity.Tips;
 import cn.com.wyxt.base.interfaces.AuthIgnore;
+import cn.com.wyxt.base.tokenManager.impl.AuthManager;
+import cn.com.wyxt.base.util.Constants;
 import cn.com.wyxt.base.util.MD5Util;
 import cn.com.wyxt.huzhu.service.IAccountService;
 import io.swagger.annotations.Api;
@@ -19,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.UnsupportedEncodingException;
 
 @Api(value = "LoginCtrl",tags = "登录",description = "后台登录")
-@AuthIgnore
 @RequestMapping("/login")
 @RestController
 public class LoginCtrl {
@@ -33,12 +34,27 @@ public class LoginCtrl {
             @ApiImplicitParam(name="account",value="账号",dataType="string", paramType = "query",example="admin",required = true),
             @ApiImplicitParam(name="psw",value="密码",dataType="string", paramType = "query",example="123",required = true),
     })
+    @AuthIgnore
     @RequestMapping("valid")
     public Msg valid(@RequestParam(defaultValue = "0") Integer userType,String account, String psw) throws Exception {
 
         if(StringUtils.isEmpty(account)||StringUtils.isEmpty(psw)){
             return Msg.fail(Tips.ACCOUNT_PSW_NULL);
         }
+        return accountService.validLogin(account,psw,userType);
+    }
+
+    @ApiOperation(value = "获取当前登录用户",notes = "获取当前登录用户")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="userType",value="类型，0 企业，1管理员",dataType="string", paramType = "query",example="0",required = true),
+    })
+    @AuthIgnore
+    @RequestMapping("getCurrent")
+    public Msg getCurrent(@RequestParam(defaultValue = "0") Integer userType) throws Exception {
+        if(Constants.COMPANY_USER_TYPE == userType){
+            AuthManager.getCompVO();
+        }
+        AuthManager.getAdminVO()
         return accountService.validLogin(account,psw,userType);
     }
 }

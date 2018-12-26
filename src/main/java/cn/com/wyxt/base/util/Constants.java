@@ -12,6 +12,9 @@ public class Constants {
      */
     public static final Integer FEEDBACK_COMPANY_USER_CREATE =1;
     public static final Integer FEED_BACK_HELPER_CREATE =2;
+    public static final Integer COMPANY_USER_TYPE = 0;
+    public static final Integer ADMIN_USER_TYPE = 1;
+    public static final Integer SYS_USER_TYPE = 110;
 
     // '0 提交，1转发，2 中介驳回，3接收受理，4受理单位驳回 ，5 评论',
     public  enum RECORD{
