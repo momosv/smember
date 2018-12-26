@@ -51,10 +51,15 @@ public class LoginCtrl {
     @AuthIgnore
     @RequestMapping("getCurrent")
     public Msg getCurrent(@RequestParam(defaultValue = "0") Integer userType) throws Exception {
+        Object obj = null;
         if(Constants.COMPANY_USER_TYPE == userType){
-            AuthManager.getCompVO();
+            obj = AuthManager.getCompVO();
+        }else {
+            obj = AuthManager.getAdminVO();
         }
-        AuthManager.getAdminVO()
-        return accountService.validLogin(account,psw,userType);
+        if(obj == null){
+            return Msg.fail();
+        }
+        return Msg.success().add("user",obj);
     }
 }
