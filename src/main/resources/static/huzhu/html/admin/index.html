@@ -11,7 +11,13 @@
         <title>Bootstrap左右结构响应式后台管理模板</title>
         <script src="../../jquery3.0.0/jquery.js"></script>
         <script src="../../bootstrap3.3.7/js/bootstrap.min.js"></script>
+        <script src="../../hz/js/login.js"></script>
         <script>
+            //检验登录
+            $(
+                checkLogin(1)
+            );
+
             $(function() {
                 $(".meun-item").click(function() {
                     $(".meun-item").removeClass("meun-item-active");
@@ -44,7 +50,7 @@
                     $("#leftMeun").toggleClass("show");
                     $("#rightContent").toggleClass("pd0px");
                 })
-            })
+            });
         </script>
         <!--[if lt IE 9]>
         <script src="js/html5shiv.min.js"></script>
