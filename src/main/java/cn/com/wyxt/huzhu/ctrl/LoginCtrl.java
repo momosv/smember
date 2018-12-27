@@ -5,7 +5,6 @@ import cn.com.wyxt.base.entity.Tips;
 import cn.com.wyxt.base.interfaces.AuthIgnore;
 import cn.com.wyxt.base.tokenManager.impl.AuthManager;
 import cn.com.wyxt.base.util.Constants;
-import cn.com.wyxt.base.util.MD5Util;
 import cn.com.wyxt.huzhu.service.IAccountService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -17,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.UnsupportedEncodingException;
 
 @Api(value = "LoginCtrl",tags = "登录",description = "后台登录")
 @RequestMapping("/login")
@@ -61,5 +58,21 @@ public class LoginCtrl {
             return Msg.fail();
         }
         return Msg.success().add("user",obj);
+    }
+
+
+    @ApiOperation(value = "登出",notes = "登录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="userType",value="类型，0 企业，1管理员",dataType="string", paramType = "query",example="0",required = true),
+    })
+    @AuthIgnore
+    @RequestMapping("loginOut")
+    public Msg loginOut(@RequestParam(defaultValue = "0") Integer userType) throws Exception {
+        if(Constants.COMPANY_USER_TYPE == userType){
+            AuthManager.loginCompOff();
+        }else {
+            AuthManager.loginAdminOff();
+        }
+        return Msg.success();
     }
 }

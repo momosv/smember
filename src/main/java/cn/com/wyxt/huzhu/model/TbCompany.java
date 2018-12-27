@@ -7,7 +7,6 @@ import java.util.Date;
 
 public class TbCompany extends IBaseDBPO{
 
-    private static final long serialVersionUID = 1L;
 
     public  String _getTableName(){
         return "tb_company";
@@ -53,12 +52,23 @@ public class TbCompany extends IBaseDBPO{
     private String city;
 
     private String type;
+    private String remark;
 
     private Integer auth;
 
     private Date createTime;
 
     private BigDecimal amount;
+
+
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     public String getId() {
         return id;

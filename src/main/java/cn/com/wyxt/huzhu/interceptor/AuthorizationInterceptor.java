@@ -3,9 +3,8 @@ package cn.com.wyxt.huzhu.interceptor;
 
 import cn.com.wyxt.base.exception.DiyException;
 import cn.com.wyxt.base.interfaces.AuthIgnore;
-import cn.com.wyxt.base.redis.util.RedisUtils;
 import cn.com.wyxt.base.util.Constants;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -47,24 +46,26 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
 
         //获取用户凭证
-        String token = request.getHeader(Constants.COMPANY_USER_TOKEN);
-        if(StringUtils.isEmpty(token)){
-            token = request.getParameter(Constants.COMPANY_USER_TOKEN);
-        }
-        if(StringUtils.isEmpty(token)){
-            Object obj = request.getSession().getAttribute(Constants.COMPANY_USER_TOKEN);
-            if(null!=obj){
-                token=obj.toString();
-            }
-        }
+//        String token = request.getHeader(Constants.COMPANY_USER_TOKEN);
+//        if(StringUtils.isEmpty(token)){
+//            token = request.getParameter(Constants.COMPANY_USER_TOKEN);
+//        }
+//        if(StringUtils.isEmpty(token)){
+//            Object obj = request.getSession().getAttribute(Constants.LOGIN_ADMIN);
+//            if(null!=obj){
+//                token=obj.toString();
+//            }
+//        }
 
         //token凭证为空
-        if(StringUtils.isEmpty(token)){
-            throw new DiyException(Constants.COMPANY_USER_TOKEN + "不能为空"+"|"+ HttpStatus.UNAUTHORIZED.value());
+        Object obj = request.getSession().getAttribute(Constants.LOGIN_ADMIN);
+        if(StringUtils.isEmpty(obj)){
+            throw new DiyException("尚未登录或已经过期");
+//            throw new DiyException(Constants.COMPANY_USER_TOKEN + "不能为空"+"|"+ HttpStatus.UNAUTHORIZED.value());
         }
-        if(!RedisUtils.hasKey(token)){
-            throw new DiyException("登录已经过期");
-        }
+//        if(!RedisUtils.hasKey(token)){
+//            throw new DiyException("登录已经过期");
+//        }
        // RedisUtils.expire(token,60*30);
 
         return true;

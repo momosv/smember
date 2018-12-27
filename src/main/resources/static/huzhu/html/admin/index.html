@@ -4,13 +4,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="左右结构项目，属于大人员的社交工具">
-        <meta name="keywords" content="左右结构项目 社交 占座 ">
+        <meta name="description" content="救助信息管理平台">
+        <meta name="keywords" content="救助信息管理平台 亲清家园 宁海 ">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
-        <title>Bootstrap左右结构响应式后台管理模板</title>
-        <script src="../../jquery3.0.0/jquery.js"></script>
-        <script src="../../bootstrap3.3.7/js/bootstrap.min.js"></script>
+        <title>救助信息管理平台</title>
+        <link rel="icon" type="image/x-icon" href="/static/huzhu/favicon.ico">
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script src="../../hz/js/login.js"></script>
         <script>
             //检验登录
@@ -69,21 +70,20 @@
             <!-- 左侧菜单栏目块 -->
             <div class="leftMeun" id="leftMeun">
                 <div id="logoDiv">
-                    <p id="logoP"><img id="logo" alt="左右结构项目" src="../../images/logo.png"><span>左右结构项目</span></p>
+                    <p id="logoP"><img id="logo" alt="救助信息管理平台" src="/static/huzhu/favicon.ico"><span>救助信息管理平台</span></p>
                 </div>
                 <div id="personInfor">
-                    <p id="userName">杨鹏</p>
-                    <p><span>yangxp@qq.com</span> <a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+                    <p id="userName"></p>
                     <p>
-                        <a>退出登录</a>
+                        <a onclick="loginOut(1)">退出登录</a>
                     </p>
                 </div>
-                <div class="meun-title">账号管理</div>
+                <div class="meun-title">企业管理</div>
                 <div class="meun-item meun-item-active" href="#sour" aria-controls="sour" role="tab" data-toggle="tab"><img src="../../images/icon_source.png">资源管理</div>
                 <div class="meun-item" href="#char" aria-controls="char" role="tab" data-toggle="tab"><img src="../../images/icon_chara_grey.png">权限管理</div>
                 <div class="meun-item" href="#user" aria-controls="user" role="tab" data-toggle="tab"><img src="../../images/icon_user_grey.png">用户管理</div>
                 <div class="meun-item" href="#chan" aria-controls="chan" role="tab" data-toggle="tab"><img src="../../images/icon_change_grey.png">修改密码</div>
-                <div class="meun-title">地区管理</div>
+                <div class="meun-title">系统设置</div>
                 <div class="meun-item" href="#scho" aria-controls="scho" role="tab" data-toggle="tab"><img src="../../images/icon_house_grey.png">地区管理</div>
                 <div class="meun-item" href="#regu" aria-controls="regu" role="tab" data-toggle="tab"><img src="../../images/icon_rule_grey.png">规则管理</div>
                 <div class="meun-item" href="#stud" aria-controls="stud" role="tab" data-toggle="tab"><img src="../../images/icon_card_grey.png">人员信息</div>
@@ -636,11 +636,11 @@
                 <!-- /.modal -->
 
             </div>
-            <!--用户管理模块-->
+            <!--企业管理模块-->
             <div role="tabpanel" class="tab-pane" id="user">
                 <div class="check-div form-inline">
                     <div class="col-xs-3">
-                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addUser">添加用户 </button>
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addCompany">添加企业 </button>
                     </div>
                     <div class="col-xs-4">
                         <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
@@ -739,67 +739,78 @@
                 </footer>
 
                 <!--弹出添加用户窗口-->
-                <div class="modal fade" id="addUser" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
+                <div class="modal fade" id="addCompany" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document"  style="width:800px">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">添加用户</h4>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加企业</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <form class="form-horizontal">
                                         <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <label for="companyName" class="col-xs-4 control-label">名称：</label>
                                             <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
+                                                <input type="text"  class="form-control input-md duiqi" id="companyName" placeholder="">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                        <div class="form-group ">
+                                            <label for="creditCode" class="col-xs-4 control-label">社会统一信用代码：</label>
                                             <div class="col-xs-8 ">
-                                                <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
+                                                <input type="text" class="form-control input-md col-xs-8 duiqi" id="creditCode" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <label for="sLink" class="col-xs-4 control-label">法定代表人（负责人）：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="text"  class="form-control input-medium duiqi" id="sLink" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class="col-xs-4 control-label">电子邮箱：</label>
                                             <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
+                                                <input type="email" class="form-control input-md duiqi" id="email" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <label for="phone" class="col-xs-4 control-label">电话：</label>
                                             <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm duiqi" id="sKnot" placeholder="">
+                                                <input type="" class="form-control input-md duiqi" id="phone" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <label for="address" class="col-xs-4 control-label">地址：</label>
+                                            <!--<div class="col-xs-8">-->
+                                                <!--<select class=" form-control select-duiqi">-->
+                                                    <!--<option value="">国际关系地区</option>-->
+                                                    <!--<option value="">北京大学</option>-->
+                                                    <!--<option value="">天津大学</option>-->
+                                                <!--</select>-->
+                                            <!--</div>-->
                                             <div class="col-xs-8">
-                                                <select class=" form-control select-duiqi">
-                                                    <option value="">国际关系地区</option>
-                                                    <option value="">北京大学</option>
-                                                    <option value="">天津大学</option>
-                                                </select>
+                                                <input type="" class="form-control input-md duiqi" id="address" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <label for="type" class="col-xs-4 control-label">企业类型：</label>
                                             <div class="col-xs-8">
-                                                <select class=" form-control select-duiqi">
-                                                    <option value="">管理员</option>
-                                                    <option value="">普通用户</option>
-                                                    <option value="">游客</option>
-                                                </select>
+                                                <input type="" class="form-control input-md duiqi" id="type" placeholder="如：营利性/非营利性">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <label for="remark" class="col-xs-4 control-label">备注：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-md duiqi" id="remark" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-4 control-label">状态：</label>
                                             <div class="col-xs-8">
                                                 <label class="control-label" for="anniu">
-                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <input type="radio" aria-selected="true" name="situation" id="authNormal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <label class="control-label" for="meun">
-                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                                    <input type="radio" name="situation" id="aythForbid"> 禁用</label>
                                             </div>
                                         </div>
                                     </form>

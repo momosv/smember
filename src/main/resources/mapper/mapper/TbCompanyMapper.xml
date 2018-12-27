@@ -17,12 +17,13 @@
     <result column="province" property="province" jdbcType="VARCHAR" />
     <result column="city" property="city" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="remark" property="type" jdbcType="VARCHAR" />
     <result column="auth" property="auth" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="amount" property="amount" jdbcType="DECIMAL" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, address, linkman, phone, email, social_credit_code, await_code_img, code_img, 
+    id, name, address, linkman, phone, email, social_credit_code, await_code_img, code_img, remark
     await_company_img, company_img, country, province, city, type, auth, create_time, 
     amount
   </sql>

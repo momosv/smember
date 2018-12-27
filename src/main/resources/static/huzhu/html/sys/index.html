@@ -4,14 +4,23 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="左右结构项目，属于大人员的社交工具">
-        <meta name="keywords" content="左右结构项目 社交 占座 ">
+        <meta name="description" content="救助信息管理平台">
+        <meta name="keywords" content="救助信息管理平台 亲清家园 宁海 ">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
-        <title>Bootstrap左右结构响应式后台管理模板</title>
+        <title>救助信息管理平台</title>
+        <link rel="icon" type="image/x-icon" href="/static/huzhu/favicon.ico">
         <script src="../../js/jquery.min.js"></script>
         <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../hz/js/login.js"></script>
         <script>
+
+
+            //检验登录
+            $(
+                checkLogin(1)
+            );
+
             $(function() {
                 $(".meun-item").click(function() {
                     $(".meun-item").removeClass("meun-item-active");
@@ -63,19 +72,18 @@
             <!-- 左侧菜单栏目块 -->
             <div class="leftMeun" id="leftMeun">
                 <div id="logoDiv">
-                    <p id="logoP"><img id="logo" alt="左右结构项目" src="../../images/logo.png"><span>左右结构项目</span></p>
+                    <p id="logoP"><img id="logo" alt="救助信息管理平台" src="/static/huzhu/favicon.ico"><span>救助信息管理平台</span></p>
                 </div>
                 <div id="personInfor">
-                    <p id="userName">杨鹏</p>
-                    <p><span>yangxp@qq.com</span> <a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+                    <p id="userName"></p>
                     <p>
-                        <a>退出登录</a>
+                        <a onclick="loginOut(1)">退出登录</a>
                     </p>
                 </div>
                 <div class="meun-title">账号管理</div>
+                <div class="meun-item" href="#user" aria-controls="user" role="tab" data-toggle="tab"><img src="../../images/icon_user_grey.png">企业管理</div>
                 <div class="meun-item meun-item-active" href="#sour" aria-controls="sour" role="tab" data-toggle="tab"><img src="../../images/icon_source.png">资源管理</div>
                 <div class="meun-item" href="#char" aria-controls="char" role="tab" data-toggle="tab"><img src="../../images/icon_chara_grey.png">权限管理</div>
-                <div class="meun-item" href="#user" aria-controls="user" role="tab" data-toggle="tab"><img src="../../images/icon_user_grey.png">用户管理</div>
                 <div class="meun-item" href="#chan" aria-controls="chan" role="tab" data-toggle="tab"><img src="../../images/icon_change_grey.png">修改密码</div>
                 <div class="meun-title">地区管理</div>
                 <div class="meun-item" href="#scho" aria-controls="scho" role="tab" data-toggle="tab"><img src="../../images/icon_house_grey.png">地区管理</div>

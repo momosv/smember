@@ -14,10 +14,9 @@
         <script src="../../js/bootstrap.min.js"></script>
         <script src="../../hz/js/login.js"></script>
         <script>
-
             //检验登录
             $(
-                checkLogin(0)
+                checkLogin(1)
             );
 
             $(function() {
@@ -52,16 +51,16 @@
                     $("#leftMeun").toggleClass("show");
                     $("#rightContent").toggleClass("pd0px");
                 })
-            })
+            });
         </script>
         <!--[if lt IE 9]>
         <script src="js/html5shiv.min.js"></script>
         <script src="../../js/respond.min.js"></script>
         <![endif]-->
-        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../bootstrap3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../../css/common.css" />
         <link rel="stylesheet" type="text/css" href="../../css/slide.css" />
-        <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+        <!--<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />-->
         <link rel="stylesheet" type="text/css" href="../../css/flat-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="../../css/jquery.nouislider.css">
     </head>
@@ -76,7 +75,7 @@
                 <div id="personInfor">
                     <p id="userName"></p>
                     <p>
-                        <a onclick="loginOut(0)">退出登录</a>
+                        <a onclick="loginOut(1)">退出登录</a>
                     </p>
                 </div>
                 <div class="meun-title">账号管理</div>

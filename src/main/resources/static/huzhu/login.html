@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -25,7 +25,7 @@
 
 <div class="container pt-5">
     <h1 class="card-title center-block text-center">救助信息管理平台</h1>
-    <div class="col-sm-12 col-md-7 col-lg-7 m-auto pt-2 mt-2">
+    <div class="col-sm-12 col-md-5 col-lg-5 m-auto pt-2 mt-2">
         <!--登陆框-->
 
         <div class="card" style="border-radius: 10px">
@@ -109,17 +109,17 @@
             type: 'POST',
             data: {account: username, psw: password,userType:type},
             dataType: "JSON",
-            url: 'http://127.0.0.1:8081/hz/login/valid',
+            url: '/hz/login/valid',
             success: function (data) {
                 $("#login-btn").button('reset');
                 // $("#login-btn").button('reset');
                 if (data.code == 0) {
                     if(data.extend.type==1) {
-                        window.location.href = 'http://127.0.0.1:8081/hz/huzhu/html/admin/index.html';
+                        window.location.href = '/hz/huzhu/html/admin/index.html';
                     }else if(data.extend.type==110) {
-                        window.location.href = 'http://127.0.0.1:8081/hz/huzhu/html/sys/index.html';
+                        window.location.href = '/hz/huzhu/html/sys/index.html';
                     }else {//data.extend.type==0)
-                        window.location.href = 'http://127.0.0.1:8081/hz/huzhu/html/comp/index.html';
+                        window.location.href = '/hz/huzhu/html/comp/index.html';
                     }
                 } else {
                     info.html('登录失败！请检查密码或用户名是否出错');

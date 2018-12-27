@@ -22,7 +22,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(sysAuthorizationInterceptor).addPathPatterns("/sys/**")
         .excludePathPatterns(Arrays.asList("/**.js","/**.css"));
 
-        registry.addInterceptor(authorizationInterceptor).addPathPatterns("/mgr/**")
+        registry.addInterceptor(authorizationInterceptor).addPathPatterns("/hz/admin/**")
         .excludePathPatterns(Arrays.asList("/**.js","/**.css"));
 
         registry.addInterceptor(wxAuthorizationInterceptor).addPathPatterns("/mp/**","/wxSecurity/**")
