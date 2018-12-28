@@ -200,7 +200,7 @@
 
 	<select id="countByExample" parameterType="cn.com.wyxt.base.mybatis.model.BasicExample"
 		resultType="java.lang.Integer">
-		select sellCount(1) from ${example.tName}
+		select count(1) from ${example.tName}
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>

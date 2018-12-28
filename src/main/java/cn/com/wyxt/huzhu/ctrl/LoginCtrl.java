@@ -36,7 +36,7 @@ public class LoginCtrl {
     public Msg valid(@RequestParam(defaultValue = "0") Integer userType,String account, String psw) throws Exception {
 
         if(StringUtils.isEmpty(account)||StringUtils.isEmpty(psw)){
-            return Msg.fail(Tips.ACCOUNT_PSW_NULL);
+            return Msg.fail(Tips.ACCOUNT_NAME_PSW_NULL);
         }
         return accountService.validLogin(account,psw,userType);
     }

@@ -115,11 +115,11 @@
                 // $("#login-btn").button('reset');
                 if (data.code == 0) {
                     if(data.extend.type==1) {
-                        window.location.href = '/hz/huzhu/html/admin/index.html';
+                        window.location.href = '/hzp/html/admin/index.html';
                     }else if(data.extend.type==110) {
-                        window.location.href = '/hz/huzhu/html/sys/index.html';
+                        window.location.href = '/hzp/html/sys/index.html';
                     }else {//data.extend.type==0)
-                        window.location.href = '/hz/huzhu/html/comp/index.html';
+                        window.location.href = '/hzp/html/comp/index.html';
                     }
                 } else {
                     info.html('登录失败！请检查密码或用户名是否出错');

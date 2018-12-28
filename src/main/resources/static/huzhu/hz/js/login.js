@@ -8,12 +8,12 @@ function checkLogin(userType){
             $("#login-btn").button('reset');
             // $("#login-btn").button('reset');
             if (data.code != 0) {
-                window.location.href = '/hz/huzhu/login.html';
+                window.location.href = '/hzp/login.html';
             }
             $("#userName").text(data.extend.user.name);
         },
         error:function () {
-            window.location.href = '/hz/huzhu/login.html';
+            window.location.href = '/hzp/login.html';
         }
 
     });
@@ -29,11 +29,11 @@ function loginOut(userType){
             $("#login-btn").button('reset');
             // $("#login-btn").button('reset');
             if (data.code == 0) {
-                window.location.href = '/hz/huzhu/login.html';
+                window.location.href = '/hzp/login.html';
             }
         },
         error:function () {
-            window.location.href = '/hz/huzhu/login.html';
+            window.location.href = '/hzp/login.html';
         }
 
     });

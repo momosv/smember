@@ -8,4 +8,6 @@ import java.io.UnsupportedEncodingException;
 public interface IAccountService extends BasicService {
 
     public Msg validLogin(String account, String psw , Integer type) throws UnsupportedEncodingException, Exception;
+
+    boolean validCompAccountExist(String account) throws IllegalAccessException, InstantiationException;
 }

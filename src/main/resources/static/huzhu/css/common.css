@@ -86,7 +86,7 @@ body {
 	font-size: 12px;
 	margin-left: -5px;
 }
-#personInfor a {
+#personInfor a ,#leftMeun a{
 	color: #B3BCC5;
 	text-decoration: underline;
 }

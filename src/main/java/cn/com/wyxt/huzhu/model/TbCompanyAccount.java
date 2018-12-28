@@ -1,8 +1,26 @@
 package cn.com.wyxt.huzhu.model;
 
+import cn.com.wyxt.base.mybatis.model.IBaseDBPO;
+
 import java.util.Date;
 
-public class TbCompanyAccount {
+public class TbCompanyAccount extends IBaseDBPO {
+
+    public  String _getTableName(){
+        return "tb_company_account";
+    }
+
+    public String _getPKColumnName(){
+        return "id";
+    }
+
+    public Object _getPKValue(){
+        return id;
+    }
+
+    public void _setPKValue(Object var){
+        this.id=var.toString();
+    }
     private String id;
 
     private String companyId;
