@@ -266,10 +266,17 @@ public class BasicServiceImpl implements BasicService {
 		Map<String, Object> map = new HashMap<>();
 		map.put("_tableName", t._getTableName());
 		map.put("_tablePKName", t._getPKColumnName());
-		Map<String, Object> fmap =getFieldMapValues(Arrays.asList(t),selective);
-		map.put("_PKs", fmap.get("_PKs"));
-		fmap.remove("_PKs");
-		map.put("_values", fmap);
+		map.put("_PK", t._getPKValue());
+		String[] fieldNames = this.getFieldName(t);
+		Map<String, Object> idmap = new HashMap<>();
+		for (String key:fieldNames) {
+			if(key.equals(t._getPKColumnName()))continue;
+			Object value = new Object[fieldNames.length];
+			value = this.getFieldValueByName(key, t);
+			if(selective&&value==null)continue;
+			idmap.put(RegexUtils.humpToLine(key) , value);
+		}
+		map.put("_values", idmap);
 	    return 	basicMapper.update(map);
 	}
 
@@ -351,4 +358,5 @@ public class BasicServiceImpl implements BasicService {
 		fmap.put("_PKs", _PKs);
 		return fmap;
 	}
+
 }

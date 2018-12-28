@@ -13,4 +13,6 @@ import java.io.UnsupportedEncodingException;
  **/
 public interface ICompanyService extends BasicService {
     void addCompany(TbCompany company) throws UnsupportedEncodingException;
+
+    void updateCompany(TbCompany company);
 }

@@ -48,4 +48,9 @@ public class CompanyServiceImpl extends BasicServiceImpl implements ICompanyServ
         this.insertOne(account);
     }
 
+    @Override
+    public void updateCompany(TbCompany company) {
+        this.updateOne(company);
+    }
+
 }

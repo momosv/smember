@@ -2,8 +2,11 @@ package cn.com.wyxt.huzhu.ctrl;
 
 import cn.com.wyxt.base.entity.Msg;
 import cn.com.wyxt.base.entity.Tips;
+import cn.com.wyxt.base.tokenManager.impl.AuthManager;
 import cn.com.wyxt.base.util.UUIDRandomUtil;
+import cn.com.wyxt.huzhu.model.TbAdmin;
 import cn.com.wyxt.huzhu.model.TbCompany;
+import cn.com.wyxt.huzhu.modelVO.TbAdminVO;
 import cn.com.wyxt.huzhu.service.IAccountService;
 import cn.com.wyxt.huzhu.service.ICompanyService;
 import io.swagger.annotations.*;
@@ -20,6 +23,9 @@ import java.io.UnsupportedEncodingException;
 @RestController
 public class AdminCtrl {
 
+    private TbAdminVO getUser(){
+      return   AuthManager.getAdminVO();
+    }
 
     @Autowired
     IAccountService accountService;
@@ -37,6 +43,7 @@ public class AdminCtrl {
                               @RequestParam(name="pageNum",defaultValue = "1") int pageNum,
                               @RequestParam(name="pageSize",defaultValue = "10")int pageSize
         ){
+                getUser();
 
 
                 return Msg.success();
@@ -45,7 +52,7 @@ public class AdminCtrl {
     @ApiOperation(value = "新增企业",notes = "新增企业",httpMethod = "POST")
     @ApiImplicitParams({})
     @RequestMapping("addCompany")
-    public Msg getCompanyList(TbCompany company) throws InstantiationException, IllegalAccessException, UnsupportedEncodingException {
+    public Msg addCompany(TbCompany company) throws InstantiationException, IllegalAccessException, UnsupportedEncodingException {
         if(StringUtils.isEmpty(company.getName())){
             return Msg.fail(Tips.COMP_NAME_NULL);
         }
@@ -61,5 +68,37 @@ public class AdminCtrl {
        company.setId(UUIDRandomUtil.get32UUID());
         companyService.addCompany(company);
         return Msg.success();
+    }
+
+    @ApiOperation(value = "新增企业",notes = "新增企业",httpMethod = "POST")
+    @ApiImplicitParams({})
+    @RequestMapping("updateCompany")
+    public Msg updateCompany(TbCompany company) throws Exception {
+        TbAdminVO adminVO=getUser();
+        if(StringUtils.isEmpty(company.getName())){
+            return Msg.fail(Tips.COMP_NAME_NULL);
+        }
+        if(StringUtils.isEmpty(company.getSocialCreditCode())){
+            return Msg.fail(Tips.COMP_CODE_NULL);
+        }
+        if(StringUtils.isEmpty(company.getEmail())){
+            return Msg.fail(Tips.COMP_EMAIL_NULL);
+        }
+        if(accountService.validCompAccountExist(company.getEmail())){
+            return Msg.fail("邮箱账号已存在");
+        }
+        TbCompany tbCompany = companyService.selectByPrimaryKey(TbCompany.class,company.getId());
+        if(null == tbCompany) return Msg.fail("数据不存在或者被删除");
+        companyService.updateCompany(company);
+        return Msg.success();
+    }
+
+    @ApiOperation(value = "获取企业详情",notes = "获取企业详情",httpMethod = "POST")
+    @ApiImplicitParams({})
+    @RequestMapping("companyDetail")
+    public Msg companyDetail(String id) throws Exception {
+        TbCompany tbCompany = companyService.selectByPrimaryKey(TbCompany.class,id);
+        if(null == tbCompany) return Msg.fail().add("detail",tbCompany);
+        return Msg.success().add("detail",tbCompany);
     }
 }

@@ -174,10 +174,10 @@
 
 	<update id="update" parameterType="java.util.Map">
 		update ${dataMap._tableName} set
-		<foreach collection="dataMap._values" item="id_value_Map"
-				 index="key" separator=",">
-			${key}=#{_value}
+		<foreach collection="dataMap._values" item="value" index="key" separator=",">
+			${key}=#{value}
 		</foreach>
+		where ${dataMap._tablePKName} = #{dataMap._PK}
 	</update>
 
 	<update id="updateByExample" parameterType="java.util.Map">
