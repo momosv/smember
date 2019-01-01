@@ -6,6 +6,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -39,6 +41,24 @@ public class RedisUtils {
     }
 
     /**
+     * @param K
+     * @param tClass
+     * @param <T>
+     * @return
+     */
+    public static  <T> T  get(Object K,Class<T> tClass){
+        Object obj =  redisTemplate.opsForValue().get(K);
+        if (obj==null)return null;
+
+       return (T) obj;
+    }
+    public static  <T> List<T> getList(Object K, Class<T> tClass){
+        Object obj =  redisTemplate.opsForValue().get(K);
+        if (obj==null)return null;
+       return (List<T>) obj;
+    }
+
+    /**
      * 指定缓存失效时间
      * @param key 键
      * @param time 时间(秒)
@@ -49,6 +69,21 @@ public class RedisUtils {
             if(time>0){
                 redisTemplate.expire(key, time, TimeUnit.SECONDS);
             }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    /**
+     * 指定缓存失效时间
+     * @param key 键
+     * @param time 时间(秒)
+     * @return
+     */
+    public static boolean expireAt(String key,Date time){
+        try {
+            redisTemplate.expireAt(key, time);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

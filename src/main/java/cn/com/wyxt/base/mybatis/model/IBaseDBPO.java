@@ -18,14 +18,14 @@ public   class IBaseDBPO implements Serializable, Cloneable{
 
 	 public String _getPKColumnName(){
 	 	return "id";
-	 };
+	 }
 
 	 public Object _getPKValue(){
 	 	return null;
-	 };
+	 }
 
 	 public void _setPKValue(Object var){
 
-	 };
+	 }
 
 }

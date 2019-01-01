@@ -31,6 +31,18 @@
 
 
 
+        <table tableName="tb_rule" domainObjectName="TbRule"
+               enableInsert="false"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="false"
+               enableDeleteByPrimaryKey="false"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false">
+            <columnOverride column="type" javaType="java.lang.Integer"/>
+        </table>
+
+<!--
         <table tableName="tb_company_account" domainObjectName="TbCompanyAccount"
                enableInsert="false"
                enableSelectByExample="false"
@@ -40,7 +52,7 @@
                enableCountByExample="false"
                enableUpdateByExample="false">
             <columnOverride column="grade" javaType="java.lang.Integer"/>
-        </table>
+        </table>-->
 
         <!--<table tableName="tb_admin" domainObjectName="TbAdmin"-->
                <!--enableInsert="false"-->

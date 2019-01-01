@@ -78,7 +78,7 @@ public class RedisConfig {
         // key的序列化采用StringRedisSerializer
         template.setKeySerializer(new StringRedisSerializer());
         template.setHashKeySerializer(new StringRedisSerializer());
-        ParserConfig.getGlobalInstance().addAccept("com.cn.xt.mp");
+        ParserConfig.getGlobalInstance().addAccept("cn.com.wyxt");
        // ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
         template.setConnectionFactory(redisConnectionFactory);
     //    RedisUtil.redisTemplate = template;

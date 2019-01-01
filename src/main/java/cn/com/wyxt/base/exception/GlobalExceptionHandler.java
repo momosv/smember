@@ -46,7 +46,7 @@ public class GlobalExceptionHandler{
         if (e instanceof DiyException) {
             return Msg.fail(e.getMessage());
         }
-        try {
+
                 LOGGER.info(">>>>>>系统异常，记录异常信息到数据库------start------");
                 // 远程访问IP
                 String ip = IPUtils.getRemortIP(request);
@@ -54,6 +54,7 @@ public class GlobalExceptionHandler{
                 String param =JSON.toJSONString(request.getParameterMap());
                 StringWriter sw = new StringWriter();
                 e.printStackTrace(new PrintWriter(sw, true));
+                e.printStackTrace();
                 // 插入异常日志到数据库
                 TbExceptionLog log = new TbExceptionLog();
                 log.setIp(ip);
@@ -64,14 +65,9 @@ public class GlobalExceptionHandler{
                 log.setExceptionMsg(sw.toString()); // 异常详细信息
                 log.setIsView(1); // 默认未读,1:为查看、2：已查看
                 log.setAddtime(new Date());
-                exceptionLogService.insertExceptionLogSelective(log);
+              //  exceptionLogService.insertExceptionLogSelective(log);
                 LOGGER.info(">>>>>>系统异常，记录异常信息到数据库------end------");
-        } catch (Exception ex) {
-           ExceptionCenter.insertExceptionLog(ex,null,this.getClass().getSimpleName(),"server",null);
-        }finally {
-
             return  Msg.fail().add("msg",StringUtils.isEmpty(e.getMessage())?"系统出现异常":e.getMessage());
-        }
     }
 
 }

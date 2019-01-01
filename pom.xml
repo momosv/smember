@@ -45,12 +45,6 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 
-
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
-		<!--</dependency>-->
-
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.boot</groupId>-->
 			<!--<artifactId>spring-boot-starter-websocket</artifactId>-->
@@ -117,14 +111,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--thymeleaf的H5格式检查严格，所以加入该库使用LEGACYHTML5检查-->
-		<!--<dependency>-->
-			<!--<groupId>net.sourceforge.nekohtml</groupId>-->
-			<!--<artifactId>nekohtml</artifactId>-->
-			<!--<version>1.9.22</version>-->
-		<!--</dependency>-->
-
-
 		<!--热部署-->
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.boot</groupId>-->
@@ -141,10 +127,10 @@
 		</dependency>
 
 		<!--加入Spring Security依赖-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-security</artifactId>-->
+		<!--</dependency>-->
 
          <!--OCR-->
 		<dependency>

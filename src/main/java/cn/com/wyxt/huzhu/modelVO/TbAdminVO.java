@@ -3,6 +3,7 @@ package cn.com.wyxt.huzhu.modelVO;
 import cn.com.wyxt.base.mybatis.model.IBaseDBPO;
 
 import java.util.Date;
+import java.util.Set;
 
 public class TbAdminVO extends IBaseDBPO{
 
@@ -33,10 +34,33 @@ public class TbAdminVO extends IBaseDBPO{
     private Date createTime;
 
     private String parentId;
+    private String parentName;
 
     private Integer grade;
 
     private Integer type;
+
+    private Set<String> authority;
+
+    public Set<String> getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Set<String> authority) {
+        this.authority = authority;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
 
     public String getId() {
         return id;

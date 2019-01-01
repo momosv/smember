@@ -1,0 +1,17 @@
+*{
+    font-size: large;
+}
+
+.pagination li a{
+    color:#0f0f0f!important;
+}
+
+.cut {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+
+    vertical-align: middle;
+
+}

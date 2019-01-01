@@ -23,6 +23,7 @@ import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
@@ -40,9 +41,9 @@ import java.util.List;
 
 @MapperScan(value={"cn.com.wyxt.huzhu.dao.dao","cn.com.wyxt.base.mybatis.dao"})
 @Configuration
-@EnableTransactionManagement
 @AutoConfigureAfter(DatasourceConfig.class)
 @ConfigurationProperties(prefix = "mybatis")
+@EnableTransactionManagement
 public class MybatisConfiguration implements TransactionManagementConfigurer {
 
         private static Log logger = LogFactory.getLog(MybatisConfiguration.class);
@@ -119,9 +120,10 @@ public class MybatisConfiguration implements TransactionManagementConfigurer {
         }
         
         //事务管理
-        @Bean(name = "DataSourceTransactionManager ")
+        @Bean
         @Primary
-        public DataSourceTransactionManager  annotationDrivenTransactionManager() {
+        public PlatformTransactionManager annotationDrivenTransactionManager() {
+
             return new DataSourceTransactionManager(dataSource);
         }
 

@@ -22,7 +22,9 @@ import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -39,9 +41,9 @@ import java.util.List;
 @AutoConfigureAfter(DatasourceConfig.class)
 @MapperScan(value={"cn.com.wyxt.huzhu.dao.readonlydao"},sqlSessionFactoryRef="readonlySqlSessionFactory")
 @Configuration
-@EnableTransactionManagement
 @ConfigurationProperties(prefix = "mybatis")
-public class ReadonlyMybatisConfiguration {
+@EnableTransactionManagement
+public class ReadonlyMybatisConfiguration   {
 
 	private static Log logger = LogFactory.getLog(ReadonlyMybatisConfiguration.class);
 
@@ -71,8 +73,8 @@ public class ReadonlyMybatisConfiguration {
 
 
     //事务管理
-    @Bean(name = "circleDataSourceTransactionManager ")
-    public  DataSourceTransactionManager  annotationDrivenTransactionManager(@Qualifier("readonlyDataSource") DataSource datasource) {
+    @Bean(name = "readonlyDataSourceTransactionManager")
+    public PlatformTransactionManager annotationDrivenTransactionManager(@Qualifier("readonlyDataSource") DataSource datasource) {
         return new DataSourceTransactionManager(datasource);
     }
 

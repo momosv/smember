@@ -6,7 +6,6 @@ import java.util.Date;
 
 public class TbCompanyEmployee extends IBaseDBPO{
 
-    private static final long serialVersionUID = 1L;
 
     public  String _getTableName(){
         return "tb_company_employee";

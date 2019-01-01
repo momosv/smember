@@ -312,9 +312,10 @@ select {
 	box-shadow: none!important;
 }
 .duiqi {
+	padding-left: 5px!important;
 	margin-left: -26px!important;
 	margin-top: 7px;
-	width: 200px!important;
+	width: 300px!important;
 }
 .form-horizontal .form-group {
 	margin-right: -100px!important;

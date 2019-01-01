@@ -5,7 +5,6 @@ import cn.com.wyxt.base.mybatis.model.IBaseDBPO;
 import java.util.Date;
 
 public class TbEmployeeUpdateRecord extends IBaseDBPO{
-    private static final long serialVersionUID = 1L;
 
     public  String _getTableName(){
         return "tb_employee_update_record";

@@ -8,15 +8,21 @@ import cn.com.wyxt.base.util.MD5Util;
 import cn.com.wyxt.base.util.SpringUtil;
 import cn.com.wyxt.huzhu.dao.dao.TbCompanyAccountMapper;
 import cn.com.wyxt.huzhu.dao.readonlydao.ReadonlyTbAdminMapper;
+import cn.com.wyxt.huzhu.model.TbAdmin;
 import cn.com.wyxt.huzhu.model.TbCompanyAccount;
 import cn.com.wyxt.huzhu.modelVO.TbAdminVO;
 import cn.com.wyxt.huzhu.modelVO.TbCompanyAccountVO;
 import cn.com.wyxt.huzhu.service.IAccountService;
+import cn.com.wyxt.huzhu.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
+import java.util.List;
 
-
+@Transactional(rollbackFor = Exception.class)
 @Service("accountService")
 public class AccountServiceImpl extends BasicServiceImpl implements IAccountService {
 
@@ -24,6 +30,9 @@ public class AccountServiceImpl extends BasicServiceImpl implements IAccountServ
     TbCompanyAccountMapper tbCompanyAccountMapper;
     @Autowired
     ReadonlyTbAdminMapper readonlyTbAdminMapper;
+
+    @Autowired
+    IAdminService adminService;
 
     @Autowired
     public void setMapper(){
@@ -55,10 +64,54 @@ public class AccountServiceImpl extends BasicServiceImpl implements IAccountServ
     }
 
     @Override
-    public boolean validCompAccountExist(String account) throws IllegalAccessException, InstantiationException {
+    public boolean validCompAccountExist(String email, String extId) throws IllegalAccessException, InstantiationException {
         BasicExample ex = new BasicExample(TbCompanyAccount.class);
-        ex.createCriteria().andVarEqualTo("account",account);
+        ex.createCriteria().andVarEqualTo("account", email).andVarNotEqualTo("id",extId);
        int count = this.countByExample(ex);
         return count>0;
     }
+
+    @Override
+    public List getAccountList(String name, TbAdminVO admin) throws Exception {
+        if(admin.getGrade()==0) {
+            return readonlyTbAdminMapper.getAccountList(null,"%"+name+"%",admin.getGrade(),null,admin.getType());
+        }
+        return  readonlyTbAdminMapper.getAccountList(null,"%"+name+"%",admin.getGrade(),admin.getId(),admin.getType());
+
+    }
+    @Override
+    public TbAdminVO getAccount(String id) throws Exception {
+            return readonlyTbAdminMapper.getAccount(id);
+
+    }
+
+    @Override
+    public List getSuperChildAccountList(String name, TbAdminVO admin) throws Exception {
+        BasicExample ex = new BasicExample(TbAdmin.class);
+        BasicExample.Criteria criteria = ex.createCriteria();
+        if (!StringUtils.isEmpty(name)) {
+            criteria.andVarFullLike("name", name);
+        }
+        criteria.andVarEqualTo("type",admin.getType().toString());
+        criteria.andVarNotEqualTo("id",admin.getId());
+        ex.setOrderByClause("create_time desc");
+        return this.selectByExample(ex);
+    }
+
+    @Override
+    public boolean validAdminAccountExist(String account, String ext) throws IllegalAccessException, InstantiationException {
+        BasicExample ex = new BasicExample(TbAdmin.class);
+        ex.createCriteria().andVarEqualTo("account", account).andVarNotEqualTo("id",ext);
+        int count = this.countByExample(ex);
+        return count>0;
+    }
+
+
+    @Override
+    public void updateCompanyAmount(String id, Integer amount) throws Exception {
+        tbCompanyAccountMapper.updateCompanyAmount(id,amount);
+    }
+
+
+
 }

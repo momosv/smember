@@ -4,19 +4,26 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="救助信息管理平台">
-        <meta name="keywords" content="救助信息管理平台 亲清家园 宁海 ">
+        <meta name="description" content="协同权利在线">
+        <meta name="keywords" content="协同 权利人在线管理平台 亲清家园 宁海 ">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
-        <title>救助信息管理平台</title>
+        <title>协同权利在线</title>
         <link rel="icon" type="image/x-icon" href="/hzp/favicon.ico">
         <script src="../../js/jquery.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../bootstrap3.3.7/js/tooltip.js"></script>
+        <script src="../../bootstrap3.3.7/js/bootstrap.min.js"></script>
         <script src="../../hz/js/login.js"></script>
+        <script src="../../hz/js/adminSetting.js"></script>
+        <script src="../../js/toastr.min.js"></script>
+        <link href="../../css/toastr.min.css" rel="stylesheet" />
+        <link href="../../hz/css/common.css" rel="stylesheet" />
         <script>
             //检验登录
-            $(
-                checkLogin(1)
+            $(function () {
+                    checkLogin(1);
+            }
+
             );
 
             $(function() {
@@ -70,7 +77,7 @@
             <!-- 左侧菜单栏目块 -->
             <div class="leftMeun" id="leftMeun">
                 <div id="logoDiv">
-                    <p id="logoP"><img id="logo" alt="救助信息管理平台" src="/hzp/favicon.ico"><span>救助信息管理平台</span></p>
+                    <p id="logoP"><img id="logo" alt="救助信息管理平台" src="/hzp/favicon.ico"><span>协同权利在线</span></p>
                 </div>
                 <div id="personInfor">
                     <p id="userName"></p>
@@ -80,10 +87,8 @@
                 </div>
                 <div class="meun-title"><a href="index.html" style='text-decoration:none'>企业管理</a></div>
                    <div class="meun-title">设置</div>
-                <div class="meun-item" href="#scho" aria-controls="scho" role="tab" data-toggle="tab"><img src="../../images/icon_house_grey.png">地区管理</div>
-                <div class="meun-item" href="#regu" aria-controls="regu" role="tab" data-toggle="tab"><img src="../../images/icon_rule_grey.png">规则管理</div>
-                <div class="meun-item" href="#stud" aria-controls="stud" role="tab" data-toggle="tab"><img src="../../images/icon_card_grey.png">人员信息</div>
-                <div class="meun-item" href="#sitt" aria-controls="sitt" role="tab" data-toggle="tab"><img src="../../images/icon_char_grey.png">座位管理</div>
+                <div class="meun-item meun-item-active" href="#regu" aria-controls="regu" role="tab" data-toggle="tab" onclick="getRuleList()"><img src="../../images/icon_rule_grey.png">规则管理</div>
+                <div class="meun-item" href="#stud" aria-controls="stud" role="tab" data-toggle="tab" onclick="getAAccountList(1,10)"><img src="../../images/icon_card_grey.png">子账号管理</div>
             </div>
             <!-- 右侧具体内容栏目 -->
             <div id="rightContent">
@@ -92,285 +97,15 @@
                 </a>
                 <!-- Tab panes -->
                 <div class="tab-content">
-            <!--地区管理模块-->
-            <div role="tabpanel" class="tab-pane" id="scho">
-
-                <div class="check-div form-inline">
-                    <div class="col-xs-3">
-                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addSchool">添加地区 </button>
-                    </div>
-                    <div class="col-lg-4 col-xs-5">
-                        <input type="text" class=" form-control input-sm " placeholder="输入文字搜索">
-                        <button class="btn btn-white btn-xs ">查 询 </button>
-                    </div>
-                    <div class="col-lg-3 col-lg-offset-1 col-xs-3" style="padding-right: 40px;text-align: right;float: right;">
-                        <label for="paixu">排序:&nbsp;</label>
-                        <select class="form-control">
-                            <option>地区</option>
-                            <option>排名</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="data-div">
-                    <div class="row tableHeader">
-                        <div class="col-xs-1 ">
-                            编码
-                        </div>
-                        <div class="col-xs-2 ">
-                            地区
-                        </div>
-                        <div class="col-xs-1">
-                            经度
-                        </div>
-                        <div class="col-xs-1">
-                            维度
-                        </div>
-                        <div class="col-xs-2">
-                            建筑信息
-                        </div>
-                        <div class="col-xs-2">
-                            人员列表
-                        </div>
-                        <div class="col-xs-2">
-                            操作
-                        </div>
-                    </div>
-                    <div class="tablebody">
-
-                        <div class="row">
-                            <div class="col-xs-1 ">
-                                1
-                            </div>
-                            <div class="col-xs-2">
-                                国际关系地区
-                            </div>
-                            <div class="col-xs-1">
-                                45.0
-                            </div>
-                            <div class="col-xs-1">
-                                95.90
-                            </div>
-                            <div class="col-xs-2">
-                                <a class="linkCcc">查看</a>
-                            </div>
-                            <div class="col-xs-2">
-                                <a class="linkCcc">查看</a>
-                            </div>
-                            <div class="col-xs-2">
-                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseSchool">修改</button>
-                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteSchool">删除</button>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-                <!--页码块-->
-                <footer class="footer">
-                    <ul class="pagination">
-                        <li>
-                            <select>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </select>
-                            页
-                        </li>
-                        <li class="gray">
-                            共20页
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-left">
-                            </i>
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-right">
-                            </i>
-                        </li>
-                    </ul>
-                </footer>
-
-                <!--弹出添加用户窗口-->
-                <div class="modal fade" id="addSchool" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">添加地区</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form class="form-horizontal">
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">地区名称：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">经度：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sLink" class="col-xs-3 control-label">纬度：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sOrd" class="col-xs-3 control-label">简称：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-xs btn-green">保 存</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
-                <!--弹出修改用户窗口-->
-                <div class="modal fade" id="reviseSchool" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">修改地区</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form class="form-horizontal">
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">地区名称：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">经度：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sLink" class="col-xs-3 control-label">纬度：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sOrd" class="col-xs-3 control-label">简称：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-xs btn-green">保 存</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
-                <!--弹出删除用户警告窗口-->
-                <div class="modal fade" id="deleteSchool" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    确定要删除该地区？删除后不可恢复！
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-xs btn-danger">保 存</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
-            </div>
             <!--规则管理模块-->
-            <div role="tabpanel" class="tab-pane" id="regu" style="padding-top: 50px;">
+            <div role="tabpanel" class="tab-pane active" id="regu" style="padding-top: 50px;">
                 <div class="data-div">
-                    <div class="tablebody col-lg-10 col-lg-offset-1">
+                    <div class="tablebody col-lg-10 col-lg-offset-1"  id="categoryRow">
+                        <label>工种类和基数（元/天）</label>
                         <div class="row">
-                            <div class="col-xs-3" style="padding-right: 0;">签到超时时间</div>
+                            <div class="col-xs-3" style="padding-right: 0;">一类</div>
                             <div class="col-xs-7 expand-col">
-                                <div class="slider-minmax1">
-                                </div>
-                                <div class="row top100">
-                                    <span class="left">0</span>
-                                    <span class="right">30</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-2">
-                                <button class="btn btn-xs btn-white">默认值</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-3" style="padding-right: 0;">抢座超时时间</div>
-                            <div class="col-xs-7 expand-col">
-                                <div class="slider-minmax2">
-                                </div>
-                                <div class="row top100">
-                                    <span class="left">0</span>
-                                    <span class="right">15</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-2">
-                                <button class="btn btn-xs btn-white">默认值</button>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-3" style="padding-right: 0;">临时离开超时时间</div>
-                            <div class="col-xs-7 expand-col">
-                                <div class="slider-minmax3">
-                                </div>
-                                <div class="row top100">
-                                    <span class="left">0</span>
-                                    <span class="right">60</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-2">
-                                <button class="btn btn-xs btn-white">默认值</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-3" style="padding-right: 0;">违约次数冻结上限</div>
-                            <div class="col-xs-7 expand-col">
-                                <div class="slider-minmax4">
+                                <div class="slider-minmaxnum slider-minmaxnum1" >
                                 </div>
                                 <div class="row top100">
                                     <span class="left">0</span>
@@ -378,365 +113,306 @@
                                 </div>
                             </div>
                             <div class="col-xs-2">
-                                <button class="btn btn-xs btn-white">默认值</button>
+                                <input  oninput="asyncNum(this,0)"  class="col-xs-1 form-control" style= "font-size: 16px;width:60px;margin-top: 10px;margin-left: 30px;padding-left: 5px "/>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3" style="padding-right: 0;">可预约天数</div>
+                            <div class="col-xs-3" style="padding-right: 0;">二类</div>
                             <div class="col-xs-7 expand-col">
-                                <div class="slider-minmax5">
+                                <div class="slider-minmaxnum slider-minmaxnum2">
                                 </div>
                                 <div class="row top100">
                                     <span class="left">0</span>
-                                    <span class="right">7</span>
+                                    <span class="right">100</span>
                                 </div>
                             </div>
                             <div class="col-xs-2">
-                                <button class="btn btn-xs btn-white">默认值</button>
+                                <input  oninput="asyncNum(this,0)"  class="col-xs-1 form-control" style= "font-size: 16px;width:60px;margin-top: 10px;margin-left: 30px;padding-left: 5px "/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-3" style="padding-right: 0;">三类</div>
+                            <div class="col-xs-7 expand-col">
+                                <div class="slider-minmaxnum slider-minmaxnum3">
+                                </div>
+                                <div class="row top100">
+                                    <span class="left">0</span>
+                                    <span class="right">100</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <input  oninput="asyncNum(this,0)"  class="col-xs-1 form-control" style= "font-size: 16px;width:60px;margin-top: 10px;margin-left: 30px;padding-left: 5px "/>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3" style="padding-right: 0;">最大未完成预约数</div>
+                            <div class="col-xs-3" style="padding-right: 0;">四类</div>
                             <div class="col-xs-7 expand-col">
-                                <div class="slider-minmax6">
+                                <div class="slider-minmaxnum slider-minmaxnum4">
                                 </div>
                                 <div class="row top100">
                                     <span class="left">0</span>
-                                    <span class="right">10</span>
+                                    <span class="right">100</span>
                                 </div>
                             </div>
                             <div class="col-xs-2">
-                                <button class="btn btn-xs btn-white">默认值</button>
+                                <input  oninput="asyncNum(this,0)"  class="col-xs-1 form-control" style= "font-size: 16px;width:60px;margin-top: 10px;margin-left: 30px;padding-left: 5px "/>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-xs-3" style="padding-right: 0;">五类</div>
+                            <div class="col-xs-7 expand-col">
+                                <div class="slider-minmaxnum slider-minmaxnum5">
+                                </div>
+                                <div class="row top100">
+                                    <span class="left">0</span>
+                                    <span class="right">100</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <input  oninput="asyncNum(this,0)"   class="col-xs-1 form-control" style= "font-size: 16px;width:60px;margin-top: 10px;margin-left: 30px;padding-left: 5px "/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3" style="padding-right: 0;">六类</div>
+                            <div class="col-xs-7 expand-col">
+                                <div class="slider-minmaxnum slider-minmaxnum6">
+                                </div>
+                                <div class="row top100">
+                                    <span class="left">0</span>
+                                    <span class="right">100</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <input  oninput="asyncNum(this,0)"   class="col-xs-1 form-control" style= "font-size: 16px;width:60px;margin-top: 10px;margin-left: 30px;padding-left: 5px "/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="tablebody col-lg-10     col-lg-offset-1" id="manRow">
+                        <label>男职工年龄系数（年龄：岁）</label>
+                        <input type="button" class="btn" style="background-color:#eff3f6;font-size:25px;font-weight: bold;color:darkseagreen"  onclick="addage(this)"  value="十"/>
+                    </div>
+                    <div class="tablebody col-lg-10   col-lg-offset-1"  id="womanRow">
+                        <label>女职工年龄系数（年龄：岁）</label>
+                        <input type="button" class="btn" style="background-color:#eff3f6;font-size:25px;font-weight: bold;color:darkseagreen" onclick="addage(this)" value="十"/>
+                    </div>
+                    <div class="tablebody col-lg-10   col-lg-offset-1"  >
+
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                            <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            <label>生效时间</label>
+                            <input type="datetime-local" id="activeTime">
+                            <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" onclick="getRuleList()">还原</button>
+                            <button type="button" class="btn btn-xs btn-green" onclick="updateRule()">保 存</button>
+                        </div>
+                    </div>
+                    <div class="tablebody col-lg-10   col-lg-offset-1"  >
+
+                        <div id="futureRule">
+                            <div>
+                                <label>下面即将生效规则，时间:</label>
+                                <label id="futureTime">2018-11-11 12:12:12</label>
+                            </div>
+                            <br>
+                            <div>
+                                <lable style="font-weight: bold">工种类和基数</lable>
+                                <br>
+                                <lable  class="col-xs-3">1类：5（元/天）</lable>
+                                <lable  class="col-xs-3">2类：5（元/天）</lable>
+                                <lable  class="col-xs-3">3类：5（元/天） </lable>
+                                <lable  class="col-xs-3">4类：5（元/天）</lable>
+                                <lable  class="col-xs-3">5类：5（元/天）</lable>
+                                <lable  class="col-xs-3">6类：5（元/天）</lable>
+                            </div>
+                            <br>
+                            <div>
+                                <br><lable style="font-weight: bold">男职工年龄段基数</lable>
+                                <br>
+                                <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                                <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                                <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                                <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                                <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                            </div>
+                            <br>
+                            <div>
+                                <br> <lable style="font-weight: bold">女职工年龄段基数</lable>
+                                <br>
+                                <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                                <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                                <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                                <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                                <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+
+                    <div id="ageModel" style="display: none">
+                        <div style="" class="row" >
+                            <div class="col-xs-1" style="padding-right: 0;">年龄段</div>
+                            <div class="col-xs-4 expand-col">
+                                <div class="slider-minmaxagec"></div>
+
+                            </div>
+                            <!--</div>-->
+                            <!--<div class="row">-->
+                            <div class="col-xs-1" style="padding-right: 0;">系数</div>
+                            <div class="col-xs-3 expand-col">
+                                <div class="slider-minmaxnumc">
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <input  class="col-xs-1 form-control" oninput="asyncNum(this)" style= "font-size: 16px;width:60px;margin-top: 10px;margin-left: 30px;padding-left: 5px "/>
+                            </div>
+                            <input type="button" class="btn "  style="background-color:white;font-size:25px;font-weight: bold;color:#ff3d00;margin-left: 5px" onclick="removeAge(this)" value="一"/>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--时间段管理模块-->
-            <div role="tabpanel" class="tab-pane" id="time">
+            <!--人员管理模块-->
+            <div role="tabpanel" class="tab-pane" id="stud">
                 <div class="check-div form-inline">
-                    <span href="#sitt" aria-controls="sitt" role="tab" data-toggle="tab" style="cursor: pointer;"><span class="glyphicon glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;返回上一页</span>
-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-yellow btn-xs " data-toggle="modal" data-target="#addTime">添加时间段 </button>
+                    <div class="col-xs-3">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addAAccount">添加子账号</button>
+                    </div>
+                    <div class="col-xs-5">
+                        <input type="text"  style="padding-left: 5px;font-size: 20px"  class=" form-control input-sm" id="AANameSearch" placeholder="输入文字搜索" >
+                        <button class="btn btn-white btn-xs " onclick="getAAccountList(1,10)">查 询 </button>
+                    </div>
+      <!--              <div class="col-xs-4 col-lg-4  col-md-5" style="padding-right: 40px;text-align: right;float: right;">
+                        <label for="daoru">导入人员信息表:&nbsp;</label>
+                        <button class="btn btn-white btn-xs " id="daoru">选取文件 </button>
+                        <button class="btn btn-white btn-xs ">导入 </button>
+                    </div>-->
 
                 </div>
                 <div class="data-div">
                     <div class="row tableHeader">
                         <div class="col-xs-3 ">
-                            编码
+                            账户名
                         </div>
-                        <div class="col-xs-3">
-                            开始
-                        </div>
-                        <div class="col-xs-3">
-                            结束
-                        </div>
-
-                        <div class="col-xs-3">
-                            操作
-                        </div>
-                    </div>
-                    <div class="tablebody">
-
-                        <div class="row">
-                            <div class="col-xs-3 ">
-                                6426398978
-                            </div>
-                            <div class="col-xs-3">
-                                10:10
-                            </div>
-                            <div class="col-xs-3">
-                                19:30
-                            </div>
-                            <div class="col-xs-3">
-                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#changeTime">修改</button>
-                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteTime">删除</button>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-                <!--页码块-->
-                <footer class="footer">
-                    <ul class="pagination">
-                        <li>
-                            <select>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </select>
-                            页
-                        </li>
-                        <li class="gray">
-                            共20页
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-left">
-                            </i>
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-right">
-                            </i>
-                        </li>
-                    </ul>
-                </footer>
-
-                <!--弹出增加时间段窗口-->
-                <div class="modal fade" id="addTime" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">时间段设置</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form class="form-horizontal">
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">开始时间：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm" id="sName" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">结束时间：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm" id="sName" placeholder="">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-xs btn-green">保 存</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
-                <!--修改增加时间段窗口-->
-                <div class="modal fade" id="changeTime" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">修改时间段</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form class="form-horizontal">
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">开始时间：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">结束时间：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-green btn-xs">保 存</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-                <!--弹出删除时间段警告窗口-->
-                <div class="modal fade" id="deleteTime" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    确定要删除该时间段？
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-danger btn-xs">保 存</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
-            </div>
-            <!--座位管理模块-->
-            <div role="tabpanel" class="tab-pane" id="sitt">
-
-                <div class="check-div form-inline" style="">
-                    <div class="col-lg-4 col-xs-7 col-md-6">
-                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addBuilding">添加楼宇 </button>
-                        <label for="paixu">楼宇:&nbsp;</label>
-                        <select class=" form-control">
-                            <option>第一教学楼</option>
-                            <option>逸夫楼</option>
-                            <option>综合楼</option>
-                            <option>图书馆</option>
-                        </select>
-                        <button class="btn btn-white btn-xs ">修 改</button>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-4 col-xs-4 col-md-5 " style="padding-right: 40px;text-align: right;">
-                        <input type="text" class=" form-control input-sm " placeholder="输入文字搜索">
-                        <button class="btn btn-white btn-xs ">查 询 </button>
-                    </div>
-                </div>
-                <div class="data-div">
-                    <div class="row tableHeader">
-                        <div class="col-xs-2 "style="padding-left: 20px;">
-                            楼层
-                        </div>
-                        <div class="col-xs-3"style="padding-left: 20px;">
-                            区域
-                        </div>
-                        <div class="col-xs-2" style="padding-left: 2px;">
-                            座位数
+                        <div class="col-xs-3 ">
+                            账号
                         </div>
                         <div class="col-xs-2">
-                            空余座位
+                            父账号
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-2">
+                            等级
+                        </div>
+                        <div class="col-xs-2">
                             操作
                         </div>
                     </div>
-                    <div class="tablebody">
-
-                        <div class="sitTable">
-                            <table class="table  table-responsive">
-                                <tr>
-                                    <td valign="middle" class="col-xs-2" rowspan="3">图书馆第一层</td>
-                                    <td class="col-xs-3">第一自习室</td>
-                                    <td class="col-xs-2">2</td>
-                                    <td class="col-xs-2" style="padding-left: 40px!important;">3</td>
-                                    <td class="col-xs-3"style="padding-left: 50px!important;">
-                                        <a class="linkCcc" href="#sitDetail" aria-controls="char" role="tab" data-toggle="tab">座位信息</a>
-                                        <a class="linkCcc" href="#time" aria-controls="char" role="tab" data-toggle="tab">时间段设置</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-xs-3">第一自习室</td>
-                                    <td class="col-xs-2">2</td>
-                                    <td class="col-xs-2" style="padding-left: 40px!important;">3</td>
-                                    <td class="col-xs-3"style="padding-left: 50px!important;">
-                                        <a class="linkCcc" href="#sitDetail" aria-controls="char" role="tab" data-toggle="tab">座位信息</a>
-                                        <a class="linkCcc" href="#time" aria-controls="char" role="tab" data-toggle="tab">时间段设置</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-xs-3">第一自习室</td>
-                                    <td class="col-xs-2">2</td>
-                                    <td class="col-xs-2" style="padding-left: 40px!important;">3</td>
-                                    <td class="col-xs-3"style="padding-left: 50px!important;">
-                                        <a class="linkCcc" href="#sitDetail" aria-controls="char" role="tab" data-toggle="tab">座位信息</a>
-                                        <a class="linkCcc" href="#time" aria-controls="char" role="tab" data-toggle="tab">时间段设置</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
+                    <div class="tablebody" id="accountDetailListBody">
                     </div>
 
                 </div>
                 <!--页码块-->
                 <footer class="footer">
+                    <ul class="pagination" id="adminAccountPagination" style="color: black;font-size: 20px">
+                    </ul>
                     <ul class="pagination">
-                        <li>
-                            <select>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </select>
-                            页
-                        </li>
-                        <li class="gray">
-                            共20页
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-left">
-                            </i>
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-right">
-                            </i>
+                        <li class="gray" id="adminAccountPaginationTotal">
+                            共0页
                         </li>
                     </ul>
                 </footer>
+                <div id="accountDetailListModel" style="display: none">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label class="cut"  data-toggle="tooltip" data-placement="top" title="{aName0}" onclick="aAccountDetail(this)" aid="{aid}" data-toggle="modal" data-target="#AADetailModal" style="cursor:pointer;color: #64B5F6;font-weight: bold">
+                                {aName}
+                            </label>
+                        </div>
+                        <div class="col-xs-3  cut " data-toggle="tooltip" data-placement="top" title="{account0}">
+                            {account}
+                        </div>
+                        <div class="col-xs-2 cut">
+                            {parent}
+                        </div>
+                        <div class="col-xs-2 cut">
+                            {grade}
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseAAccount"  aaid="{aidu}"  onclick="updateGetAAccount(this)">修改</button>
+                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteAdminAccount" aaid="{aidd}" onclick="showDeleteAAModal(this)">删除</button>
+                        </div>
+                    </div>
+                </div>
+                <!--弹出删除记录警告窗口-->
 
-                <!--弹出添加楼宇窗口-->
-                <div class="modal fade" id="addBuilding" role="dialog" aria-labelledby="gridSystemModalLabel">
+                <div class="modal fade" id="deleteAdminAccount" role="dialog" aria-labelledby="gridSystemModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">添加楼宇</h4>
+                                <h4 class="modal-title" >提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该账号？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" aaid="" id="deleteAAM" onclick="deleteAAccount(this)">确定</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!--弹出添加用户窗口-->
+                <div class="modal fade" id="addAAccount" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document"  style="width:800px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">添加子账号</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <form class="form-horizontal">
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">楼层：</label>
+                                        <div class="form-grp ">
+                                            <label for="aAName" class="col-xs-4 control-label">名称：</label>
                                             <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
+                                                <input type="text"  class="form-control input-md duiqi col-xs-8" id="aAName" placeholder="">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="sLink" class="col-xs-3 control-label">区域：</label>
+                                        <div class="form-grp ">
+                                            <label for="aAccount" class="col-xs-4 control-label">账号：</label>
                                             <div class="col-xs-8 ">
-                                                <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
+                                                <input type="text" class="form-control input-md col-xs-8 duiqi" id="aAccount" placeholder="">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="sOrd" class="col-xs-3 control-label">座位数：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
+                                        <div class="form-grp ">
+                                            <label for="aAPsw" class="col-xs-4 control-label">密码：</label>
+                                            <div class="col-xs-8 ">
+                                                <input oninput="hidePswTips()"  type="password" class="form-control input-md col-xs-8 duiqi" id="aAPsw" placeholder="">
+                                                <label class="col-xs-3 control-label" id="pswTips" style="display: none;color: #c93f10">前后密码不一致</label>
                                             </div>
                                         </div>
+                                        <div class="form-grp ">
+                                            <label for="aAPsw0" class="col-xs-4 control-label">重复输入密码：</label>
+                                            <div class="col-xs-8 ">
+                                                <input oninput="hidePswTips()"  type="password" class="form-control input-md col-xs-8 duiqi" id="aAPsw0" placeholder="">
+                                            </div>
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                                <button type="button" class="btn btn-xs btn-green" onclick="addAAccount()">保 存</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->
@@ -746,67 +422,48 @@
                 <!-- /.modal -->
 
                 <!--弹出修改用户窗口-->
-                <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
+                <div class="modal fade" id="reviseAAccount" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document"  style="width:800px">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+                                <h4 class="modal-title">修改用户</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <form class="form-horizontal">
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                        <input type="hidden" id="companyIdU" value="">
+                                        <div class="form-grp ">
+                                            <label for="aAName" class="col-xs-4 control-label">名称：</label>
                                             <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm" id="sName" placeholder="">
+                                                <input type="text"  class="form-control input-md duiqi col-xs-8" id="aANameU" placeholder="">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                        <div class="form-grp ">
+                                            <label for="aAccountU" class="col-xs-4 control-label">账号：</label>
                                             <div class="col-xs-8 ">
-                                                <input type="" class="form-control input-sm" id="sLink" placeholder="">
+                                                <input type="text" class="form-control input-md col-xs-8 duiqi" id="aAccountU" placeholder="">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm" id="sOrd" placeholder="">
+                                        <div class="form-grp ">
+                                            <label for="aAPswU" class="col-xs-4 control-label">密码：</label>
+                                            <div class="col-xs-8 ">
+                                                <input oninput="hidePswTips()" type="password" class="form-control input-md col-xs-8 duiqi" id="aAPswU" placeholder="">
+                                            <label class="col-xs-3 control-label" id="pswTipsU" style="display: none;color: #c93f10">前后密码不一致</label>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm" id="sKnot" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm" id="sKnot" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm" id="sKnot" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
-                                            <div class="col-xs-8">
-                                                <label class="control-label" for="anniu">
-                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <label class="control-label" for="meun">
-                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                        <div class="form-grp ">
+                                            <label for="aAPsw0U" class="col-xs-4 control-label">重复输入密码：</label>
+                                            <div class="col-xs-8 ">
+                                                <input oninput="hidePswTips()"  type="password" class="form-control input-md col-xs-8 duiqi" id="aAPsw0U" placeholder="">
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" onclick="updateAAccount(this)">保 存</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->
@@ -815,296 +472,143 @@
                 </div>
                 <!-- /.modal -->
 
-                <!--弹出删除用户警告窗口-->
-                <div class="modal fade" id="deleteUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                <!--详情用户窗口-->
+                <div class="modal fade" id="aAccountDetailModal" role="dialog" aria-labelledby="gridSystemModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                                <h4 class="modal-title" >详情</h4>
+                                <button  type="button" class="btn btn-xs btn-white" data-dismiss="modal" data-toggle="modal"  data-target="#reviseAAccount" aaid="" id="aAIdD" onclick="updateGetAAccount(this)">编辑</button>
                             </div>
                             <div class="modal-body">
                                 <div class="container-fluid">
-                                    确定要删除该用户？删除后不可恢复！
+                                    <form class="form-horizontal">
+                                        <div class="form-grp ">
+                                            <label class="col-xs-4 control-label">名称：</label>
+                                            <lable style="line-height: 2;padding-top: 3px" class="col-xs-8 " id="aANameD">
+                                            </lable>
+
+                                        </div>
+                                        <div class="form-grp ">
+                                            <label  class="col-xs-4 control-label">账号：</label>
+                                            <lable style="line-height: 2;padding-top: 3px" class="col-xs-8 " id="aAccountD">
+                                            </lable>
+                                        </div>
+                                        <div class="form-grp ">
+                                            <label  class="col-xs-4 control-label">父账号：</label>
+                                            <lable style="line-height: 2;padding-top: 3px" class="col-xs-8 " id="aParentD">
+                                            </lable>
+                                        </div>
+                                        <div class="form-grp ">
+                                            <label class="col-xs-4 control-label">等级：</label>
+                                            <lable style="line-height: 2;padding-top: 3px" class="col-xs-8 " id="aGradeD">
+                                            </lable>
+                                        </div>
+                                    </form>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-green btn-xs">保 存</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->
-            </div>
-            <!--座位详情模块-->
-            <div role="tabpanel" class="tab-pane" id="sitDetail">
-                <div class="check-div form-inline">
-                    <span href="#sitt" aria-controls="sitt" role="tab" data-toggle="tab" style="cursor: pointer;"><span class="glyphicon glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;返回上一页</span>
-                </div>
-                <div class="data-div">
-                    <div class="row tableHeader">
-                        <div class="col-xs-6 ">
-                            座位编码
-                        </div>
-                        <div class="col-xs-6 ">
-                            座位名称
-                        </div>
-
-                    </div>
-                    <div class="tablebody">
-
-                        <div class="row">
-                            <div class="col-xs-6 ">
-                                sad2345fas345533
-                            </div>
-                            <div class="col-xs-6">
-                                王座
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <!--页码块-->
-                <footer class="footer">
-                    <ul class="pagination">
-                        <li>
-                            <select>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </select>
-                            页
-                        </li>
-                        <li class="gray">
-                            共20页
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-left">
-                            </i>
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-right">
-                            </i>
-                        </li>
-                    </ul>
-                </footer>
-
-            </div>
-            <!--人员管理模块-->
-            <div role="tabpanel" class="tab-pane" id="stud">
-                <div class="check-div form-inline">
-                    <div class="col-xs-5">
-                        <input type="text" class=" form-control input-sm" placeholder="输入文字搜索" style="	!height: 40px!important;">
-                        <button class="btn btn-white btn-xs ">查 询 </button>
-                    </div>
-                    <div class="col-xs-4 col-lg-4  col-md-5" style="padding-right: 40px;text-align: right;float: right;">
-                        <label for="daoru">导入人员信息表:&nbsp;</label>
-                        <button class="btn btn-white btn-xs " id="daoru">选取文件 </button>
-                        <button class="btn btn-white btn-xs ">导入 </button>
-                    </div>
-
-                </div>
-                <div class="data-div">
-                    <div class="row tableHeader">
-                        <div class="col-xs-2 ">
-                            学号
-                        </div>
-                        <div class="col-xs-1 ">
-                            姓名
-                        </div>
-                        <div class="col-xs-2">
-                            院系
-                        </div>
-                        <div class="col-xs-2">
-                            年年
-                        </div>
-                        <div class="col-xs-2 ">
-                            学习时长
-                        </div>
-                        <div class="col-xs-2">
-                            违约次数
-                        </div>
-                        <div class="col-xs-1">
-                            操作
-                        </div>
-                    </div>
-                    <div class="tablebody">
-
-                        <div class="row">
-                            <div class="col-xs-2 ">
-                                6426398978
-                            </div>
-                            <div class="col-xs-1">
-                                邓超
-                            </div>
-                            <div class="col-xs-2">
-                                计算机地区
-                            </div>
-                            <div class="col-xs-2">
-                                2013年
-                            </div>
-                            <div class="col-xs-2">
-                                15
-                            </div>
-                            <div class="col-xs-2">
-                                2
-                            </div>
-                            <div class="col-xs-1">
-                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteObey">清除违约</button>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-                <!--页码块-->
-                <footer class="footer">
-                    <ul class="pagination">
-                        <li>
-                            <select>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </select>
-                            页
-                        </li>
-                        <li class="gray">
-                            共20页
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-left">
-                            </i>
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-right">
-                            </i>
-                        </li>
-                    </ul>
-                </footer>
-
-                <!--弹出删除违约记录警告窗口-->
-
-                <div class="modal fade" id="deleteObey" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    确定要删除该违约记录？删除后不可恢复！
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-xs btn-danger">保 存</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
             </div>
         </div>
     </div>
 </div>
-<!-- 滑块js -->
-<!--	<script type="text/javascript">
-        scale = function(btn, bar, title, unit) {
-                this.btn = document.getElementById(btn);
-                this.bar = document.getElementById(bar);
-                this.title = document.getElementById(title);
-                this.step = this.bar.getElementsByTagName("div")[0];
-                this.unit = unit;
-                this.init();
-        };
-        scale.prototype = {
-                init: function() {
-                        var f = this,
-                                g = document,
-                                b = window,
-                                m = Math;
-                        f.btn.onmousedown = function(e) {
-                                var x = (e || b.event).clientX;
-                                var l = this.offsetLeft;
-//						var max = f.bar.offsetWidth - this.offsetWidth;
-                                var max = f.bar.offsetWidth-20 ;
-                                g.onmousemove = function(e) {
-                                        var thisX = (e || b.event).clientX;
-                                        var to = m.min(max, m.max(-2, l + (thisX - x)));
-                                        f.btn.style.left = to+ 'px';
-                                        f.ondrag(m.round(m.max(0, to / max) * 100), to);
-                                        b.getSelection ? b.getSelection().removeAllRanges() : g.selection.empty();
-                                };
-                                g.onmouseup = new Function('this.onmousemove=null');
-                        };
-                },
-                ondrag: function(pos, x) {
-                        this.step.style.width = Math.max(0, x) +2+ 'px';
-                        this.title.innerHTML = pos / 10 + this.unit + "";
-                }
-        }
-        new scale('btn0', 'bar0', 'title0', "分钟");
-        new scale('btn1', 'bar1', 'title1', "分钟");
-        new scale('btn2', 'bar2', 'title2', "天");
-        new scale('btn3', 'bar3', 'title3', "次");
-</script>
--->
-<script src="../../js/jquery.nouislider.js"></script>
+<!-- 滑块js-->
 
+<script src="../../js/jquery.nouislider.js"></script>
 <!-- this page specific inline scripts -->
 <script>
                                                 //min/max slider
-                                                function huadong(my, unit, def, max) {
+                                                function huadong(my, unit, def, min,max) {
                                                     $(my).noUiSlider({
-                                                        range: [0, max],
+                                                        range: [min, max],
                                                         start: [def],
                                                         handles: 1,
                                                         connect: 'upper',
                                                         slide: function() {
-                                                            var val = Math.floor($(this).val());
-                                                            $(this).find(".noUi-handle").text(
-                                                                    val + unit
-                                                                    );
-                                                            console.log($(this).find(".noUi-handle").parent().parent().html());
+//                                                            var val = Math.floor($(this).val());
+                                                            var val =$(this).val();
+                                                            $(this).find(".noUi-handle").text(val + unit);
+                                                            $(this).parent().parent().find("input:first").val(val);
                                                         },
                                                         set: function() {
-                                                            var val = Math.floor($(this).val());
-                                                            $(this).find(".noUi-handle").text(
-                                                                    val + unit
-                                                                    );
+                                                         //   var val = Math.floor($(this).val());
+                                                            var val = $(this).val();
+                                                            $(this).find(".noUi-handle").text( val + unit );
+                                                            $(this).parent().parent().find("input:first").val(val);
                                                         }
                                                     });
                                                     $(my).val(def, true);
                                                 }
-                                                huadong('.slider-minmax1', "分钟", "5", 30);
-                                                huadong('.slider-minmax2', "分钟", "6", 15);
-                                                huadong('.slider-minmax3', "分钟", "10", 60);
-                                                huadong('.slider-minmax4', "次", "2", 10);
-                                                huadong('.slider-minmax5', "天", "3", 7);
-                                                huadong('.slider-minmax6', "天", "8", 10);
+
+
+                                                function huadongAge(my, unit,low, up, min,max) {
+                                                    $(my).noUiSlider({
+                                                        range: [min, max],
+                                                        start: [low,up],
+                                                        margin:0,
+                                                        step:1,
+                                                        handles: 2,
+                                                        connect: true,
+                                                        slide: function() {
+
+                                                            var valLow = Math.floor($(this).val()[0]);
+                                                            var valUpper = Math.floor($(this).val()[1]);
+                                                            $(this).find(".noUi-handle-lower").text(
+                                                                valLow + unit
+                                                            );
+                                                            $(this).find(".noUi-handle-upper").text(
+                                                                valUpper + unit
+                                                            );
+
+                                                        },
+                                                        set: function() {
+                                                            var valLow = Math.floor($(this).val()[0]);
+                                                            var valUpper = Math.floor($(this).val()[1]);
+                                                            $(this).find(".noUi-handle-lower").text(
+                                                                valLow
+                                                            );
+                                                            $(this).find(".noUi-handle-upper").text(
+                                                                valUpper
+                                                            );
+                                                        }
+                                                    });
+                                                    $(my).val([low,up], true);
+
+                                                }
+
+                                                huadong('.slider-minmaxnum', "元", "5", 0,100);
+                                                getRuleList();
+                                               function addage(t) {
+                                                   var par =$(t).parent();
+                                                   par.append($("#ageModel").html());
+                                                  var preNodeNum = par.find(".row .slider-minmaxnumc:last")[0];
+                                                  var preNodeAge = par.find(".row .slider-minmaxagec:last")[0];
+
+                                                   huadong(preNodeNum, "", "1", 0,10);
+                                                   huadongAge(preNodeAge, "","10", "50", 0,100);
+                                               }
+
+                                                function removeAge(t){
+                                                   $(t).parent().remove();
+                                                }
+
+                                                function asyncNum(t,type) {
+                                                    if(type==0){
+                                                        $(t).parent().parent().find(".slider-minmaxnum").val($(t).val(), true);
+                                                    }else {
+                                                        $(t).parent().parent().find(".slider-minmaxnumc").val($(t).val(), true);
+                                                    }
+                                                }
+
+
+
+
+
 </script>
 </body>
 

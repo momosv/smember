@@ -14,7 +14,7 @@ toastr.options = {
     hideMethod: "fadeOut"                                   //   消失时的动画方式
 };
 
-
+var isSuper=0;
 function checkLogin(userType){
     $.ajax({
         type: 'POST',
@@ -27,7 +27,10 @@ function checkLogin(userType){
             if (data.code != 0) {
                 window.location.href = '/hzp/login.html';
             }
-            $("#userName").text(data.extend.user.name);
+            isSuper=data.extend.user.grade;
+            var s="";
+            if(isSuper==0)s="[超管]";
+            $("#userName").text(data.extend.user.name+s);
         },
         error:function () {
             window.location.href = '/hzp/login.html';

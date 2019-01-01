@@ -14,11 +14,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.util.Date;
 
 
 @Service("companyService")
-@Transactional
+@Transactional(rollbackFor = Exception.class)//(value = "dataSourceTransactionManager")
 public class CompanyServiceImpl extends BasicServiceImpl implements ICompanyService {
 
     @Autowired
@@ -35,6 +36,8 @@ public class CompanyServiceImpl extends BasicServiceImpl implements ICompanyServ
 
     @Override
     public void addCompany(TbCompany company) throws UnsupportedEncodingException {
+        company.setCreateTime(new Date());
+        company.setAmount(new BigDecimal(0));
         TbCompanyAccount account = new TbCompanyAccount();
         account.setId(UUIDRandomUtil.get32UUID());
         account.setAccount(company.getEmail());
@@ -48,9 +51,10 @@ public class CompanyServiceImpl extends BasicServiceImpl implements ICompanyServ
         this.insertOne(account);
     }
 
+    @Transactional
     @Override
     public void updateCompany(TbCompany company) {
-        this.updateOne(company);
+        this.updateOne(company,true);
     }
 
 }

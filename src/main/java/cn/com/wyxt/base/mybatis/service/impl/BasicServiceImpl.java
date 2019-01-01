@@ -23,6 +23,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 
+@Transactional//(value = "dataSourceTransactionManager")
 public class BasicServiceImpl implements BasicService {
  
 
@@ -349,11 +350,11 @@ public class BasicServiceImpl implements BasicService {
 					idmap =(Map<String, Object>)fmap.get(RegexUtils.humpToLine(fieldNames[i]));
 				}
 				
-			   idmap.put((String) t._getPKValue(), value);
+			   idmap.put(t._getPKValue().toString(), value);
 			   fmap.put(RegexUtils.humpToLine(fieldNames[i]), idmap);
 				
 			}
-			_PKs[j++]= (String) t._getPKValue();
+			_PKs[j++]=  t._getPKValue().toString();
 		}
 		fmap.put("_PKs", _PKs);
 		return fmap;

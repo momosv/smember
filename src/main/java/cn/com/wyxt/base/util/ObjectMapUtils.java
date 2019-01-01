@@ -130,6 +130,7 @@ public class ObjectMapUtils {
      */
     private static Object convertValType(Object value, Class<?> fieldTypeClass) {
         Object retVal = null;
+        if(null==null)return value;
         if(Long.class.getName().equals(fieldTypeClass.getName())
                 || long.class.getName().equals(fieldTypeClass.getName())) {
             retVal = Long.parseLong(value.toString());
