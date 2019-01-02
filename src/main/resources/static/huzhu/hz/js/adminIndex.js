@@ -47,7 +47,7 @@ function getCompanyList(page, size) {
                     .replace("{code0}",v.socialCreditCode)
                     .replace("{linkman}",v.linkman)
                     .replace("{phone}",v.phone)
-                    .replace("{email}",v.email)
+                    .replace("{amount}",v.amount)
                     .replace("{email0}",v.email)
                     .replace("{auth}",authStr)
             });
