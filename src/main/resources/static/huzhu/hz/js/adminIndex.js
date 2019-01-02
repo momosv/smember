@@ -48,7 +48,7 @@ function getCompanyList(page, size) {
                     .replace("{linkman}",v.linkman)
                     .replace("{phone}",v.phone)
                     .replace("{amount}",v.amount)
-                    .replace("{email0}",v.email)
+                    .replace("{amount0}",v.email)
                     .replace("{auth}",authStr)
             });
 
@@ -86,6 +86,7 @@ function addCompany(){
        var address = $("#address").val();
        var type = $("#type").val();
        var auth = $("#authAA").val();
+       var legalRepresentative = $("#legal").val();
         $.ajax({
             type: 'POST',
             data: {
@@ -96,7 +97,8 @@ function addCompany(){
                 phone:phone,
                 address:address,
                 type:type,
-                auth:auth
+                auth:auth,
+                legalRepresentative:legalRepresentative,
             },
             dataType: "JSON",
             url: '/hz/admin/addCompany',
@@ -144,6 +146,7 @@ function companyDetail(t){
                     $("#addressD").html(detail.address);
                    $("#typeD").html(detail.type);
                    $("#remarkD").html(detail.remark);
+                   $("#legalD").html(detail.legalRepresentative);
                    if(detail.auth==1)
                    $("#authD").html("正常");
                    else{
@@ -170,6 +173,7 @@ function updateCompany(t){
     var type = $("#typeU").val();
     var remark = $("#remarkU").val();
     var auth = $("#authUU").val();
+    var legalRepresentative = $("#legalU").val();
 
     $.ajax({
         type: 'POST',
@@ -183,7 +187,8 @@ function updateCompany(t){
             address:address,
             type:type,
             auth:auth,
-            remark:remark
+            remark:remark,
+            legalRepresentative:legalRepresentative,
 
         },
         dataType: "JSON",
@@ -228,6 +233,7 @@ function updateGetCompany(t) {
                 $("#addressU").val(detail.address);
                 $("#typeU").val(detail.type);
                 $("#remarkU").val(detail.remark);
+                $("#legalU").val(detail.legalRepresentative);
                 $("#authUU").val(detail.auth);
 
             }

@@ -7,6 +7,7 @@ public interface IAdminService extends BasicService{
 
     Object  getRule();
 
-    void saveRule(String rule) throws IllegalAccessException, InstantiationException, CloneNotSupportedException;
+    void saveRule(String rule, String future) throws IllegalAccessException, InstantiationException, CloneNotSupportedException;
 
+    Object getFutureRule();
 }

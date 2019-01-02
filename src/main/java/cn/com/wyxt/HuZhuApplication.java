@@ -1,6 +1,8 @@
 package cn.com.wyxt;
 
+import cn.com.wyxt.base.email.MailService;
 import cn.com.wyxt.base.exception.DiyException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,6 +29,16 @@ import java.io.IOException;
 @EnableTransactionManagement
 public class HuZhuApplication extends SpringBootServletInitializer {
 
+
+   private static MailService mailService;
+
+    @Autowired
+   void setEmail(MailService mailService){
+        this.mailService=mailService;
+    }
+
+
+
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(HuZhuApplication.class);
@@ -34,5 +46,8 @@ public class HuZhuApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) throws IOException, DiyException {
         SpringApplication.run(HuZhuApplication.class, args);
+        //mailService.sendHtmlMail("momojy@vip.qq.com","胡天宁是大佬","说什么都是对的");
     }
+
+
 }

@@ -1,18 +1,19 @@
 package cn.com.wyxt.huzhu.service.impl;
 
 import cn.com.wyxt.base.mybatis.service.impl.BasicServiceImpl;
-import cn.com.wyxt.base.redis.util.RedisCacheUtil;
 import cn.com.wyxt.base.redis.util.RedisUtils;
 import cn.com.wyxt.base.tokenManager.impl.AuthManager;
+import cn.com.wyxt.base.util.DatePattern;
+import cn.com.wyxt.base.util.XDateUtils;
 import cn.com.wyxt.huzhu.dao.dao.TbRuleMapper;
 import cn.com.wyxt.huzhu.model.TbRule;
 import cn.com.wyxt.huzhu.modelVO.TbAdminVO;
 import cn.com.wyxt.huzhu.service.IAdminService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -44,7 +45,11 @@ public class AdminServiceImpl extends BasicServiceImpl implements IAdminService 
    }
 
     @Override
-    public void saveRule(String rule) throws IllegalAccessException, InstantiationException, CloneNotSupportedException {
+    public void saveRule(String rule, String future) throws IllegalAccessException, InstantiationException, CloneNotSupportedException {
+       Date active = new Date();
+       if(!StringUtils.isEmpty(future)){
+           active = new Date(future);
+       }
         TbAdminVO user = AuthManager.getAdminVO();
         List<TbRule> oldList= tbRuleMapper.getRule();
         short group= (short) (1+ oldList.get(0).getGrp());
@@ -57,7 +62,7 @@ public class AdminServiceImpl extends BasicServiceImpl implements IAdminService 
         List l3 = (List)  object.get("womanage");
         TbRule rule0 = new TbRule();
         rule0.setCreateTime(new Date());
-        rule0.setActiveTime(new Date());
+        rule0.setActiveTime(active);
         rule0.setGrp(group);
         rule0.setStatus(1);
         rule0.setCreator(user.getName());
@@ -93,6 +98,16 @@ public class AdminServiceImpl extends BasicServiceImpl implements IAdminService 
         }
 
         this.insertBatch(newList);
-        RedisUtils.delete("rule::cost");
+        if(active.getTime()>new Date().getTime()) {
+            RedisUtils.expireAt("rule::cost",active);
+        }else {
+            RedisUtils.delete("rule::cost");
+        }
+    }
+
+    @Override
+    public Object getFutureRule() {
+        List<TbRule>  list= tbRuleMapper.getFutureRule(XDateUtils.dateToString(new Date(), DatePattern.DATE_TIME.getPattern()));
+        return list;
     }
 }

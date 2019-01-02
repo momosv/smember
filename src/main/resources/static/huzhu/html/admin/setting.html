@@ -15,11 +15,11 @@
         <script src="../../bootstrap3.3.7/js/bootstrap.min.js"></script>
         <script src="../../hz/js/login.js"></script>
         <script src="../../hz/js/adminSetting.js"></script>
-        <!--<script src="../../js/toastr.min.js"></script>-->
-        <!--<link href="../../css/toastr.min.css" rel="stylesheet" />-->
+        <script src="../../js/toastr.min.js"></script>
+        <link href="../../css/toastr.min.css" rel="stylesheet" />
         <link href="../../hz/css/common.css" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!--        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>-->
         <script>
             //检验登录
             $(function () {
@@ -211,7 +211,7 @@
                     </div>
                     <div class="tablebody col-lg-10   col-lg-offset-1"  >
 
-                        <div id="futureRule">
+                        <div id="futureRule" style="display: none">
                             <div>
                                 <label>下面即将生效规则，时间:</label>
                                 <label id="futureTime">2018-11-11 12:12:12</label>
@@ -219,33 +219,36 @@
                             <br>
                             <div>
                                 <lable style="font-weight: bold">工种类和基数</lable>
-                                <br>
+                                <div class="col-xs-12" id="categoryFuture">
                                 <lable  class="col-xs-3">1类：5（元/天）</lable>
                                 <lable  class="col-xs-3">2类：5（元/天）</lable>
                                 <lable  class="col-xs-3">3类：5（元/天） </lable>
                                 <lable  class="col-xs-3">4类：5（元/天）</lable>
                                 <lable  class="col-xs-3">5类：5（元/天）</lable>
                                 <lable  class="col-xs-3">6类：5（元/天）</lable>
+                                </div>
                             </div>
                             <br>
                             <div>
                                 <br><lable style="font-weight: bold">男职工年龄段基数</lable>
-                                <br>
+                                <div class="col-xs-12" id="manFuture">
                                 <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
                                 <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
                                 <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
                                 <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
                                 <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                                </div>
                             </div>
                             <br>
                             <div>
                                 <br> <lable style="font-weight: bold">女职工年龄段基数</lable>
-                                <br>
+                                <div class="col-xs-12" id="womanFuture">
                                 <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
                                 <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
                                 <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
                                 <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
                                 <lable  class="col-xs-3">年龄段[12,13],基数：1.23</lable>
+                                </div>
                             </div>
                         </div>
                         <br>
@@ -383,26 +386,26 @@
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <form class="form-horizontal">
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label for="aAName" class="col-xs-4 control-label">名称：</label>
                                             <div class="col-xs-8 ">
                                                 <input type="text"  class="form-control input-md duiqi col-xs-8" id="aAName" placeholder="">
                                             </div>
                                         </div>
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label for="aAccount" class="col-xs-4 control-label">账号：</label>
                                             <div class="col-xs-8 ">
                                                 <input type="text" class="form-control input-md col-xs-8 duiqi" id="aAccount" placeholder="">
                                             </div>
                                         </div>
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label for="aAPsw" class="col-xs-4 control-label">密码：</label>
                                             <div class="col-xs-8 ">
                                                 <input oninput="hidePswTips()"  type="password" class="form-control input-md col-xs-8 duiqi" id="aAPsw" placeholder="">
                                                 <label class="col-xs-3 control-label" id="pswTips" style="display: none;color: #c93f10">前后密码不一致</label>
                                             </div>
                                         </div>
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label for="aAPsw0" class="col-xs-4 control-label">重复输入密码：</label>
                                             <div class="col-xs-8 ">
                                                 <input oninput="hidePswTips()"  type="password" class="form-control input-md col-xs-8 duiqi" id="aAPsw0" placeholder="">
@@ -435,26 +438,26 @@
                                 <div class="container-fluid">
                                     <form class="form-horizontal">
                                         <input type="hidden" id="companyIdU" value="">
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label for="aAName" class="col-xs-4 control-label">名称：</label>
                                             <div class="col-xs-8 ">
                                                 <input type="text"  class="form-control input-md duiqi col-xs-8" id="aANameU" placeholder="">
                                             </div>
                                         </div>
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label for="aAccountU" class="col-xs-4 control-label">账号：</label>
                                             <div class="col-xs-8 ">
                                                 <input type="text" class="form-control input-md col-xs-8 duiqi" id="aAccountU" placeholder="">
                                             </div>
                                         </div>
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label for="aAPswU" class="col-xs-4 control-label">密码：</label>
                                             <div class="col-xs-8 ">
                                                 <input oninput="hidePswTips()" type="password" class="form-control input-md col-xs-8 duiqi" id="aAPswU" placeholder="">
                                             <label class="col-xs-3 control-label" id="pswTipsU" style="display: none;color: #c93f10">前后密码不一致</label>
                                             </div>
                                         </div>
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label for="aAPsw0U" class="col-xs-4 control-label">重复输入密码：</label>
                                             <div class="col-xs-8 ">
                                                 <input oninput="hidePswTips()"  type="password" class="form-control input-md col-xs-8 duiqi" id="aAPsw0U" placeholder="">
@@ -486,23 +489,23 @@
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <form class="form-horizontal">
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label class="col-xs-4 control-label">名称：</label>
                                             <lable style="line-height: 2;padding-top: 3px" class="col-xs-8 " id="aANameD">
                                             </lable>
 
                                         </div>
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label  class="col-xs-4 control-label">账号：</label>
                                             <lable style="line-height: 2;padding-top: 3px" class="col-xs-8 " id="aAccountD">
                                             </lable>
                                         </div>
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label  class="col-xs-4 control-label">父账号：</label>
                                             <lable style="line-height: 2;padding-top: 3px" class="col-xs-8 " id="aParentD">
                                             </lable>
                                         </div>
-                                        <div class="form-grp ">
+                                        <div class="form-group ">
                                             <label class="col-xs-4 control-label">等级：</label>
                                             <lable style="line-height: 2;padding-top: 3px" class="col-xs-8 " id="aGradeD">
                                             </lable>

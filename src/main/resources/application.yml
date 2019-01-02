@@ -10,6 +10,24 @@ debug: true
 spring:
   profiles:
     active: base,freemark,mybatis
+#邮件
+
+  mail:
+    host: smtp.exmail.qq.com
+    username: cszs@xt12345.org
+    password: 68YGwQV76KaUn9Lp
+    properties:
+      mail:
+        self:
+          username: momo
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            port: 465
+          auth: true
+          starttls:
+            enable: true
+            required: true
 
 #  thymeleaf:
 #    prefix: classpath:/templates/
@@ -47,4 +65,5 @@ logging:
 #logging.level.org.springframework.security = debug
 #logging.level.org.springframework.security.web = warn
 #logging.level.org.springframework.web = warn
+
 

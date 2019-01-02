@@ -263,9 +263,17 @@ public class AdminCtrl {
     @ApiOperation(value = "getRuleList",notes = "getRuleList",httpMethod = "POST")
     @ApiImplicitParams({})
     @RequestMapping("saveRule")
-    public Msg saveRule(String rule) throws Exception {
-        adminService.saveRule(rule);
+    public Msg saveRule(String rule,String future) throws Exception {
+        adminService.saveRule(rule,future);
        return Msg.success();
+    }
+
+    @ApiOperation(value = "getFutureRuleList",notes = "getFutureRuleList",httpMethod = "POST")
+    @ApiImplicitParams({})
+    @RequestMapping("getFutureRuleList")
+    public Msg getFutureRuleList() throws Exception {
+        TbAdminVO adminVO=getUser();
+        return Msg.success().add("futureRule",adminService.getFutureRule());
     }
 
 

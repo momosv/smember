@@ -269,6 +269,28 @@ function getRuleList() {
     });
 }
 
+function getFutureRuleList() {
+    $.ajax({
+        type: 'POST',
+        data: {
+        },
+        dataType: "JSON",
+        url: '/hz/admin/getFutureRuleList',
+        success: function (data) {
+            // $("#login-btn").button('reset');
+            if (data.code != 0) {
+                toastr.error(data.msg);
+            }else{
+
+            }
+        },
+        error:function () {
+            toastr.error(data.msg);
+        }
+
+    });
+}
+
 function updateRule() {
     var rule=new Object();
     var obj = $("#categoryRow .slider-minmaxnum");
@@ -300,9 +322,11 @@ function updateRule() {
 
    var ruleStr = JSON.stringify(rule);
 
+   var future = $("#activeTime").val();
+
     $.ajax({
         type: 'POST',
-        data: {rule : ruleStr
+        data: {rule : ruleStr,future:future
         },
         dataType: "JSON",
         url: '/hz/admin/saveRule',

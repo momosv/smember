@@ -54,13 +54,21 @@ public class TbCompany extends IBaseDBPO{
     private String type;
     private String remark;
 
+    private String legalRepresentative;
+
     private Integer auth;
 
     private Date createTime;
 
     private BigDecimal amount;
 
+    public String getLegalRepresentative() {
+        return legalRepresentative;
+    }
 
+    public void setLegalRepresentative(String legalRepresentative) {
+        this.legalRepresentative = legalRepresentative;
+    }
 
     public String getRemark() {
         return remark;

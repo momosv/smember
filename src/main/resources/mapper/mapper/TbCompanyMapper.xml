@@ -21,11 +21,12 @@
     <result column="auth" property="auth" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="legal_representative" property="legalRepresentative" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, address, linkman, phone, email, social_credit_code, await_code_img, code_img, remark
     await_company_img, company_img, country, province, city, type, auth, create_time, 
-    amount
+    amount,legal_representative
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
